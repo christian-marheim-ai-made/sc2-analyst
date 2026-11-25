@@ -1,0 +1,11 @@
+{
+  "object": {
+    "bytes": "integer",
+    "seconds": "number",
+    "mb_s": "number",
+    "offset": "integer",
+    "past_cache": ["boolean", "null"],
+    "at": "number",
+    "said": "string"
+  }
+}

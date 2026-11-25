@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SC2 Workbench</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="wb-bar">
+  <a class="wb-brand" href="#/library" data-el="nav-library">SC2 Workbench</a>
+  <a href="#/studies" data-el="nav-studies">Studies</a>
+  <a href="#/model" data-el="nav-model">Model</a>
+  <nav class="wb-crumbs" id="crumbs" data-el="crumbs"></nav>
+  <label class="wb-debug" title="One-second steps, the ledger's counts beside the game's, every number with where it comes from">
+    <input type="checkbox" id="debug" data-el="debug-toggle"> Debug
+  </label>
+</header>
+<main id="screen" class="wb-screen" data-el="screen"><p class="wb-dim">Loading…</p></main>
+<script src="/paint.js"></script>
+</body>
+</html>

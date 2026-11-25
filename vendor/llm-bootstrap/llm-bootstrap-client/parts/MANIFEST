@@ -1,0 +1,47 @@
+# Two files are built from these parts, each under its [name], in the order
+# its parts are put together - which is the order their scripts run.
+# build.py joins them; a part's kind is its extension.
+
+# The kit: one script an application's page includes. Every widget, its
+# feeds, the containers, and the calls that place them - inside one
+# function, so its names are its own. Its look (.css) is put in the page by
+# the kit when the first thing is placed.
+[llm-bootstrap-kit.js]
+kit.css
+
+# the contract: the id grammar, the validator, and every server route by id
+@contract/ids.js
+@contract/validate.js
+@routes
+
+# the machinery every widget stands on
+dom.js
+store.js
+api.js
+registry.js
+
+# the widgets - each registers its items, tools, starts and slice of the state
+log.js
+feeds.js
+workspace.js
+queue.js
+session.js
+models.js
+bench.js
+check.js
+tools.js
+container.js
+journal.js
+
+# the kit's calls - last, once every part has registered what it brings
+kit.js
+
+# The bootstrap's own page: the kit, byte for byte, and one script that
+# places its widgets with the kit's own calls.
+[index.html]
+page-head.html
+page.css
+page-body.html
+@kit
+page.js
+page-tail.html

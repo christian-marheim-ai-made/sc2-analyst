@@ -1,0 +1,15 @@
+{
+  "id": "server.stop",
+  "method": "POST",
+  "path": "/api/stop",
+  "summary": "Stop this server, as a person stops it at its console: the answer first, then its last act in the order that loses nothing - nothing more asked of the coordinator, a load under way given up, the queue stopped, its models taken off the card while its folder is still bound, the folder put down, and whatever it held of the coordinator's given back. So a rental ends RELEASED, never lapsed: a server ended as a process gives nothing back, and its card is taken back only when its heartbeats stop. `stopping` is always true; `actor` is the server that stops. Its process, started from the command line, ends with exit code 0 once the stop is done. FOR A PROGRAM, NEVER A PAGE: a request that carries an Origin header - a page's, the server's own page and a page it was started to allow included - is refused 403 `from_a_page`, and the server goes on. Every check before any route holds for it as for every route (`server.origin`): a Host that is not one of the server's own names, a page from another address, a body in chunks or over the cap, are refused before it. It takes no body; a body sent is set aside. An application that started its server as a child stops it with this, then waits for the process to end; one whose server does not answer is ended by the handle that started it.",
+  "request": null,
+  "responses": {
+    "202": {"object": {"stopping": {"enum": [true]}, "actor": {"id": "actor"}}},
+    "403": {"object": {"error": "string", "reason": {"enum": ["from_a_page"]}}}
+  },
+  "examples": [
+    {"name": "stopping: the answer first, then the server's last act", "status": 202, "response": {"stopping": true, "actor": "srv-k3x9m2p7"}},
+    {"name": "asked by a page: refused, and the server goes on", "status": 403, "response": {"error": "a page may not stop this server: it is stopped by a program on this machine, which sends no Origin, or at its console", "reason": "from_a_page"}}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "object": {
+    "key": "string",
+    "engine": "string",
+    "need_mib": ["integer", "null"]
+  }
+}

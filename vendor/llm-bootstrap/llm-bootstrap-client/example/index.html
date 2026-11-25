@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An application's own page</title>
+<link rel="icon" href="data:,">
+<style>
+  /* the application's own look: the kit's widgets bring theirs, and touch
+     nothing of this page's */
+  body { margin: 0; font: 16px/1.5 Georgia, serif; background: #f4f1ea; color: #222; }
+  main { max-width: 56em; margin: 0 auto; padding: 1.5em; }
+  #bench { height: 26em; overflow: auto; border-radius: 6px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>An application's own page</h1>
+  <p>Its words, its layout and its look are its own. It asks its bootstrap
+  server from an address of its own, and places two of the kit's widgets:
+  the model's progress, in a container docked to the bottom edge of the
+  window, and Bench, in the box below.</p>
+  <div id="bench"></div>
+  <p>Served, for instance, by <code>python -m http.server 7867 --bind 127.0.0.1
+  --directory llm-bootstrap-client</code>, and opened at
+  <code>http://127.0.0.1:7867/example/</code>; the bootstrap server is started
+  with <code>--allow-origin http://127.0.0.1:7867</code>.</p>
+</main>
+<script>
+  // Where the bootstrap server is: said once, before the kit. Here it is read
+  // from this page's own address (?server=http://127.0.0.1:7072), so the
+  // example can be tried against any server; an application writes its own.
+  window.llmServer = new URLSearchParams(location.search).get('server') || 'http://127.0.0.1:7072';
+</script>
+<script src="../llm-bootstrap-kit.js"></script>
+<script>
+  llmKit.container('bottom', { name: 'progress', slots: { middle: ['queue'] } });
+  llmKit.place('bench', document.getElementById('bench'));
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "object": {
+    "id": {"id": "ticket"},
+    "holder": "string",
+    "actor": {"id": "actor"},
+    "class": {"enum": ["responsive", "scheduled"]},
+    "models": {"array": {"ref": "need"}},
+    "label": ["string", "null"],
+    "for": [{"id": "correlation"}, "null"],
+    "granted_at": "number",
+    "expires_at": "number",
+    "state": {"enum": ["held", "releasing", "released", "reclaiming"]},
+    "processes": {"array": {"ref": "named_process"}},
+    "degraded": [{"ref": "degraded"}, "null"]
+  }
+}

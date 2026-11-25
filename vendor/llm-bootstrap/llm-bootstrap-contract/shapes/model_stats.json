@@ -1,0 +1,29 @@
+{
+  "object": {
+    "load_s": {"ref": "stat"},
+    "load_wait_s": {"ref": "stat"},
+    "load_claim_s": {"ref": "stat"},
+    "load_spawn_s": {"ref": "stat"},
+    "load_port_s": {"ref": "stat"},
+    "load_healthy_s": {"ref": "stat"},
+    "load_identity_s": {"ref": "stat"},
+    "ready_mib": {"ref": "stat"},
+    "first_answer_mib": {"ref": "stat"},
+    "first_token_s": {"ref": "stat"},
+    "answer_s": {"ref": "stat"},
+    "tokens": {"ref": "stat"},
+    "tokens_per_s": {"ref": "stat"},
+    "prompt_tokens_per_s": {"ref": "stat"},
+    "audio_s": {"ref": "stat"},
+    "real_time_factor": {"ref": "stat"},
+    "slow_answer": {"ref": "stat"},
+    "unload_s": {"ref": "stat"},
+    "unload_memory_s": {"ref": "stat"},
+    "queue_s": {"ref": "stat"}
+  },
+  "optional": ["load_s", "load_wait_s", "load_claim_s", "load_spawn_s", "load_port_s",
+               "load_healthy_s", "load_identity_s", "ready_mib", "first_answer_mib",
+               "first_token_s", "answer_s", "tokens", "tokens_per_s", "prompt_tokens_per_s",
+               "audio_s", "real_time_factor", "slow_answer", "unload_s", "unload_memory_s",
+               "queue_s"]
+}

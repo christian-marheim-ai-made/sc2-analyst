@@ -1,0 +1,257 @@
+/* The kit's one look: every widget, container, tray, banner and panel. The
+   kit puts it in the page when the first thing is placed, and it reaches
+   only what the kit builds (`.llmk` and what is inside it): an
+   application's page keeps its own look. Colours are names, set once here.
+
+   A CONTAINER IS THREE SLOTS along one axis: a row (docked to the top or the
+   bottom edge, or in an element) or a column (docked to the left or the
+   right). Longer than it needs, the room goes BETWEEN start, middle and end.
+   Every widget sits in a box of the width and height it declared: its
+   content fits or is clipped, and a container never moves because a message
+   got longer. The room around and between the boxes is the slot's and the
+   container's, painted from the numbers the shedding adds up (container.js,
+   BOX): a box has no edge of its own. */
+
+.llmk {
+  --llmk-bg: #15171c;
+  --llmk-panel: #1d2027;
+  --llmk-line: #2c313b;
+  --llmk-text: #e6e6e6;
+  --llmk-dim: #8a8f98;
+  --llmk-accent: #6fa8ff;
+  --llmk-ok: #6fcf8f;
+  --llmk-warn: #f0b35a;
+  --llmk-bad: #ef6b6b;
+  --llmk-button: #2a2f39;
+  --llmk-banner: #213150;
+  --llmk-unknown: #555b66;
+  --llmk-shadow: #000a;
+  font: 14px/1.4 system-ui, sans-serif;
+  color: var(--llmk-text);
+  color-scheme: dark;
+}
+
+.llmk, .llmk * { box-sizing: border-box; }
+
+/* ------------------------------------------------------------ containers */
+
+.llmk-container { display: flex; flex-direction: column; background: var(--llmk-panel); }
+.llmk-container:not(.dock) { position: relative; border: 1px solid var(--llmk-line); border-radius: 6px; }
+.llmk-container.dock { position: fixed; z-index: 1000; }
+.llmk-container.dock-top { top: 0; left: 0; right: 0; border-bottom: 1px solid var(--llmk-line); }
+.llmk-container.dock-bottom { bottom: 0; left: 0; right: 0; border-top: 1px solid var(--llmk-line); }
+.llmk-container.dock-left { left: 0; border-right: 1px solid var(--llmk-line); }
+.llmk-container.dock-right { right: 0; border-left: 1px solid var(--llmk-line); }
+/* a column docked left or right stands between the rows docked top and
+   bottom, by the sizes they say (container.js, dockAt): two docks that meet
+   at a corner never cover each other */
+.llmk-container.dock-left, .llmk-container.dock-right { top: var(--llmk-dock-top, 0px); bottom: var(--llmk-dock-bottom, 0px); }
+.llmk-container.axis-column:not(.dock) { height: 100%; }
+
+/* the slots: their gaps and padding are painted from BOX (container.js), the
+   numbers the shedding adds up - so the sum and the paint cannot disagree */
+.llmk-slots { display: flex; justify-content: space-between; align-items: center; min-width: 0; }
+.axis-column > .llmk-slots { flex-direction: column; flex: 1; min-height: 0; }
+
+.llmk .slot { display: flex; align-items: center; min-width: 0; }
+.axis-column .slot { flex-direction: column; }
+
+.llmk .item { flex: none; overflow: hidden; display: flex; align-items: center; position: relative; }
+.llmk .item > .inner { flex: 1; min-width: 0; max-width: 100%; height: 100%; display: flex; align-items: center; }
+.llmk .item > .inner > * { min-width: 0; max-width: 100%; }
+.llmk .item .away {
+  position: absolute; top: -0.2em; right: -0.2em; padding: 0 0.25em; line-height: 1.2;
+  font-size: 0.8em; color: var(--llmk-bad);
+}
+.llmk-slots.customizing .item { outline: 1px dashed var(--llmk-accent); outline-offset: 2px; cursor: grab; }
+
+/* the tray is its button's box, 3 em by a line - its words kept on that
+   line and clipped to it (measured: left to wrap, they pushed the tray's
+   baseline down, and the tray stood 42.3 px tall against its 22.4) */
+.llmk .tray { position: relative; flex: none; display: flex; }
+.llmk .tray > button { height: 1.6em; padding: 0; white-space: nowrap; overflow: hidden; }
+.llmk .tray .menu {
+  position: absolute; right: 0; top: 100%; z-index: 6; list-style: none; margin: 0; min-width: 14em;
+  display: flex; flex-direction: column; gap: 2px; padding: 4px;
+  background: var(--llmk-panel); border: 1px solid var(--llmk-line); border-radius: 6px;
+}
+.dock-bottom .tray .menu { top: auto; bottom: 100%; }
+.dock-left .tray .menu { top: auto; bottom: 0; right: auto; left: 100%; }
+.dock-right .tray .menu { top: auto; bottom: 0; right: 100%; }
+.llmk .tray .menu li { display: flex; align-items: center; gap: 0.4em; padding: 0.1em 0.3em; }
+
+.llmk .banner:empty { display: none; }
+.llmk .banner { padding: 0.3em 0.6em; background: var(--llmk-banner); color: var(--llmk-text); }
+.axis-column > .banner { max-width: 18em; }
+.llmk .banner .shed { white-space: nowrap; }
+.llmk .banner .shed button { padding: 0 0.3em; }
+
+/* a panel opens beside what it belongs to, over the page: it moves nothing */
+.llmk .panel:empty { display: none; }
+.llmk .panel {
+  position: absolute; top: 100%; left: 0.6em; z-index: 10;
+  width: min(34em, calc(100vw - 1.2em)); max-height: 60vh; overflow: auto;
+  background: var(--llmk-panel); border: 1px solid var(--llmk-line); border-radius: 6px;
+  padding: 0.7em 0.9em; box-shadow: 0 8px 28px var(--llmk-shadow);
+}
+.dock-bottom > .panel { top: auto; bottom: 100%; }
+.dock-left > .panel { top: 0.6em; left: 100%; }
+.dock-right > .panel { top: 0.6em; left: auto; right: 100%; }
+.llmk-one > .panel { left: 0; }
+.llmk .panel h3 { margin: 0 0 0.5em; font-size: 1em; }
+
+/* one widget alone, in an element of the page: its box, and its panel below */
+.llmk-one { position: relative; display: inline-flex; vertical-align: middle; }
+
+/* an instrument alone, filling an element of the page */
+.llmk-tool { padding: 0.8em; background: var(--llmk-bg); }
+
+/* the instruments behind one door: the strip, and the one shown below it */
+.llmk-tools { display: grid; grid-template-rows: auto 1fr; height: 100%; min-height: 0; background: var(--llmk-bg); }
+
+/* --------------------------------------------------------------- controls */
+
+.llmk .clip { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+
+.llmk .strip { display: flex; gap: 0.2em; padding: 0.3em 0.6em 0; border-bottom: 1px solid var(--llmk-line); }
+.llmk .strip:empty { display: none; }
+
+.llmk .tab {
+  background: none; border: 1px solid transparent; border-bottom: none;
+  color: var(--llmk-dim); padding: 0.3em 0.8em; border-radius: 4px 4px 0 0; cursor: pointer;
+}
+.llmk .tab.active { color: var(--llmk-text); border-color: var(--llmk-line); background: var(--llmk-bg); }
+
+.llmk .pane { overflow: auto; padding: 0.8em; min-height: 0; }
+
+.llmk button {
+  font: inherit; color: var(--llmk-text); background: var(--llmk-button); border: 1px solid var(--llmk-line);
+  border-radius: 4px; padding: 0.15em 0.7em; cursor: pointer;
+}
+.llmk button:hover { border-color: var(--llmk-accent); }
+.llmk button:disabled { color: var(--llmk-dim); cursor: default; border-color: var(--llmk-line); }
+.llmk button.on { border-color: var(--llmk-accent); color: var(--llmk-accent); }
+
+.llmk .row { display: flex; gap: 0.4em; margin: 0.5em 0; }
+.llmk .row input[type=text] { flex: 1; min-width: 0; }
+.llmk input, .llmk select {
+  font: inherit; color: var(--llmk-text); background: var(--llmk-bg);
+  border: 1px solid var(--llmk-line); border-radius: 4px; padding: 0.15em 0.4em;
+}
+.llmk .said:empty { display: none; }
+.llmk .said { color: var(--llmk-warn); margin: 0.3em 0; }
+.llmk .recent { display: flex; flex-direction: column; align-items: flex-start; gap: 0.15em; }
+.llmk button.link { background: none; border: none; color: var(--llmk-accent); padding: 0; max-width: 100%; text-align: left; }
+.llmk .dim { color: var(--llmk-dim); }
+.llmk code { font-family: ui-monospace, Consolas, monospace; font-size: 0.95em; }
+
+/* the log's light, in its box */
+.llmk .light { color: var(--llmk-dim); padding: 0.15em 0.5em; }
+.llmk .light.bad { color: var(--llmk-bad); border-color: var(--llmk-bad); }
+
+/* the log */
+.llmk .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5em; margin-bottom: 0.4em; }
+.llmk .check { display: inline-flex; align-items: center; gap: 0.2em; color: var(--llmk-dim); }
+.llmk ol.log { list-style: none; margin: 0.4em 0 0; padding: 0; font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; }
+.llmk ol.log .line { padding: 0.15em 0.3em; border-bottom: 1px solid var(--llmk-line); cursor: pointer; }
+.llmk ol.log .time { color: var(--llmk-dim); }
+.llmk ol.log .level { display: inline-block; min-width: 3.2em; }
+.llmk ol.log .level.error { color: var(--llmk-bad); }
+.llmk ol.log .level.warn { color: var(--llmk-warn); }
+.llmk ol.log .level.info { color: var(--llmk-dim); }
+.llmk ol.log .area { color: var(--llmk-accent); }
+.llmk ol.log .count { color: var(--llmk-warn); }
+.llmk ol.log .detail { white-space: pre-wrap; margin: 0.3em 0 0.2em 1em; color: var(--llmk-dim); }
+
+/* the model's progress, in its box: the dot, the words, the blocks, the fill */
+.llmk button.graphic {
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 0.45em; width: 100%; height: 100%;
+  padding: 0 0.5em; text-align: left;
+}
+.llmk .graphic .fill {
+  position: absolute; left: 0; bottom: 0; height: 2px;
+  background: var(--llmk-accent); pointer-events: none;
+}
+.llmk .graphic .words { flex: 1; }
+.llmk .dot { flex: none; width: 0.7em; height: 0.7em; border-radius: 50%; background: var(--llmk-dim); }
+.llmk .dot.idle { background: var(--llmk-ok); }
+.llmk .dot.busy { background: var(--llmk-warn); }
+.llmk .dot.check { background: var(--llmk-accent); }
+.llmk .dot.bad { background: var(--llmk-bad); }
+.llmk .dot.unknown { background: var(--llmk-unknown); }
+.llmk .blocks { flex: none; display: flex; align-items: center; gap: 2px; }
+.llmk .blocks i { display: block; width: 0.45em; height: 0.8em; background: var(--llmk-accent); border-radius: 1px; }
+.llmk .blocks .more { color: var(--llmk-dim); font-size: 0.85em; margin-left: 0.2em; }
+
+/* the Tools door: at the end of the strip, a menu of the instruments */
+.llmk .strip .tools { margin-left: auto; position: relative; }
+.llmk .strip .menu {
+  position: absolute; right: 0; top: 100%; z-index: 5; min-width: 10em;
+  display: flex; flex-direction: column; gap: 2px; padding: 4px;
+  background: var(--llmk-panel); border: 1px solid var(--llmk-line); border-radius: 6px;
+}
+.llmk .strip .menu button { text-align: left; }
+
+/* Bench: the controls, the prompt, Run, and the session's runs */
+.llmk .bench .controls { display: flex; flex-wrap: wrap; gap: 0.4em 1em; margin-bottom: 0.5em; }
+.llmk .bench label { display: inline-flex; align-items: center; gap: 0.35em; }
+.llmk .bench textarea {
+  width: 100%; box-sizing: border-box; font: inherit; color: var(--llmk-text); background: var(--llmk-bg);
+  border: 1px solid var(--llmk-line); border-radius: 4px; padding: 0.4em;
+}
+.llmk .bench .go { margin: 0.4em 0; color: var(--llmk-dim); }
+/* what the chosen model does not take is put away: the samplers and the
+   prompt, or the audio and the fields */
+.llmk [hidden] { display: none !important; }
+.llmk .bench .group { display: contents; }
+.llmk .bench .hears { display: grid; gap: 0.4em; }
+.llmk .bench .hears label { align-items: flex-start; }
+.llmk .bench .hears input { flex: 1; min-width: 0; }
+/* Check: a transcription's audio and its length on one line, its fields on
+   the next (R-B2) */
+.llmk .check-tool .hears { display: grid; gap: 0.4em; }
+.llmk .check-tool .hears .line { display: flex; align-items: center; gap: 0.5em; }
+.llmk .check-tool .hears label { display: flex; align-items: flex-start; gap: 0.35em; }
+.llmk .check-tool .hears input { flex: 1; min-width: 0; }
+/* a transcript, whole */
+.llmk .heard { margin-top: 0.3em; }
+.llmk .heard ol { margin: 0.3em 0; padding-left: 1.4em; }
+.llmk .heard .when { color: var(--llmk-dim); font-variant-numeric: tabular-nums; }
+.llmk .heard .words { display: flex; flex-wrap: wrap; gap: 0.2em 0.6em; font-size: 0.9em; }
+.llmk .heard .word { color: var(--llmk-text); }
+.llmk .heard details { margin: 0.3em 0; }
+.llmk .bad { color: var(--llmk-bad); }
+.llmk ol.runs { list-style: none; padding: 0; margin: 0.6em 0 0; display: grid; gap: 0.6em; }
+.llmk ol.runs .run { border: 1px solid var(--llmk-line); border-radius: 6px; padding: 0.5em 0.7em; background: var(--llmk-panel); }
+.llmk ol.runs .head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5em; }
+.llmk ol.runs .doing { color: var(--llmk-warn); }
+.llmk ol.runs pre { white-space: pre-wrap; margin: 0.3em 0; font: inherit; }
+.llmk ol.runs .answer { border-top: 1px solid var(--llmk-line); margin-top: 0.4em; padding-top: 0.3em; }
+.llmk ol.runs .bad { color: var(--llmk-bad); }
+
+/* Models: a card a model */
+.llmk .models { display: grid; gap: 0.6em; margin-top: 0.6em; }
+.llmk .model { border: 1px solid var(--llmk-line); border-radius: 6px; padding: 0.5em 0.7em; background: var(--llmk-panel); }
+.llmk .model h4 { margin: 0 0 0.3em; font-size: 1em; }
+.llmk .model .bad { color: var(--llmk-bad); }
+.llmk .model .problems { margin: 0.3em 0; padding-left: 1.2em; color: var(--llmk-warn); }
+.llmk .model .measure { margin-top: 0.4em; }
+/* a model's statistics: numbers in columns, so they read at a glance */
+.llmk .model table.stats { border-collapse: collapse; margin: 0.3em 0; }
+.llmk .model table.stats th,
+.llmk .model table.stats td { padding: 0.05em 0.8em 0.05em 0; text-align: left; font-weight: normal; white-space: nowrap; }
+.llmk .model table.stats tr:first-child th { color: var(--llmk-dim); font-size: 0.85em; }
+.llmk .model table.stats td { font-variant-numeric: tabular-nums; text-align: right; }
+.llmk .model table.stats td.dim { text-align: left; }
+.llmk .badge {
+  margin-left: 0.5em; padding: 0 0.4em; border-radius: 3px; font-size: 0.85em;
+  color: var(--llmk-bg); background: var(--llmk-ok);
+}
+
+/* the queue's panel */
+.llmk ol.jobs { list-style: none; padding: 0; margin: 0.3em 0; }
+.llmk ol.jobs li { display: flex; align-items: center; gap: 0.4em; padding: 0.2em 0; border-bottom: 1px solid var(--llmk-line); }
+.llmk ol.jobs .where { width: 2.6em; color: var(--llmk-dim); }
+.llmk ol.jobs .name { flex: 1; }
+.llmk ol.jobs .doing { color: var(--llmk-warn); }

@@ -1,0 +1,18 @@
+# Replays: your own stay out; the demo replays (names removed) are part of the repository.
+*.SC2Replay
+!demo/replays/*.SC2Replay
+
+# This machine's settings and your own folders
+*.local.toml
+*.local.json
+data-home/
+llama/
+models/
+
+# Standard
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+Thumbs.db

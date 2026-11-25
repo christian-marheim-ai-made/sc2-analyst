@@ -1,0 +1,8 @@
+{
+  "object": {
+    "key": "string",
+    "state": {"enum": ["off", "waiting", "loading", "up", "failed"]},
+    "why": ["string", "null"],
+    "load": [{"id": "actor"}, "null"]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "object": {
+    "audio": "string",
+    "fields": {"object": {
+      "offset_t": "integer", "offset_n": "integer", "duration": "integer",
+      "max_context": "integer", "max_len": "integer", "best_of": "integer", "beam_size": "integer",
+      "audio_ctx": "number", "word_thold": "number", "entropy_thold": "number",
+      "logprob_thold": "number", "no_speech_thold": "number",
+      "debug_mode": "boolean", "translate": "boolean", "diarize": "boolean",
+      "tinydiarize": "boolean", "split_on_word": "boolean", "no_timestamps": "boolean",
+      "token_timestamps": "boolean", "language": "string", "detect_language": "boolean",
+      "prompt": "string", "carry_initial_prompt": "boolean",
+      "temperature": "number", "temperature_inc": "number",
+      "suppress_non_speech": "boolean", "suppress_nst": "boolean",
+      "vad": "boolean", "vad_threshold": "number", "vad_min_speech_duration_ms": "number",
+      "vad_min_silence_duration_ms": "number", "vad_max_speech_duration_s": "number",
+      "vad_speech_pad_ms": "integer", "vad_samples_overlap": "number",
+      "no_language_probabilities": "boolean"
+    },
+    "optional": [
+      "offset_t", "offset_n", "duration", "max_context", "max_len", "best_of", "beam_size",
+      "audio_ctx", "word_thold", "entropy_thold", "logprob_thold", "no_speech_thold",
+      "debug_mode", "translate", "diarize", "tinydiarize", "split_on_word", "no_timestamps",
+      "token_timestamps", "language", "detect_language", "prompt", "carry_initial_prompt",
+      "temperature", "temperature_inc", "suppress_non_speech", "suppress_nst",
+      "vad", "vad_threshold", "vad_min_speech_duration_ms", "vad_min_silence_duration_ms",
+      "vad_max_speech_duration_s", "vad_speech_pad_ms", "vad_samples_overlap",
+      "no_language_probabilities"
+    ]}
+  },
+  "optional": ["fields"]
+}

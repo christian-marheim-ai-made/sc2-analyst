@@ -1,0 +1,19 @@
+{
+  "id": "server.models.unload",
+  "method": "POST",
+  "path": "/api/models/{key}/unload",
+  "summary": "Take a model off the card, whether a job loaded it on demand or the application pinned it: the pipeline keeps it no longer, and a load of it under way is given up. The models beside it stay, and so does the card: the pipeline holds it with nothing loaded too. The answer comes once its process has gone, and says `off`; a model that is not on the card answers `off` at once. Refused `in_use` while a generation is using it - cancel that job, or wait for it - and `unload_failed` when its stop failed: it may still be on the card, so its process stays named on the rental, and its stop is asked again before any load and when the pipeline closes.",
+  "request": null,
+  "responses": {
+    "200": {"object": {"model": {"ref": "model_state"}}},
+    "404": {"object": {"error": "string", "reason": {"enum": ["no_model"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["no_runner", "in_use", "unload_failed"]}}}
+  },
+  "examples": [
+    {"name": "taken off: its process gone, the models beside it still up", "status": 200, "path": "/api/models/large-v3/unload", "response": {"model": {"key": "large-v3", "state": "off", "why": null, "load": null}}},
+    {"name": "no such model", "status": 404, "path": "/api/models/story-13b/unload", "response": {"error": "no model 'story-13b' here; the runner knows large-v3, nb-large, story-12b", "reason": "no_model"}},
+    {"name": "no runner behind the server", "status": 409, "path": "/api/models/story-12b/unload", "response": {"error": "no model runner behind this server: it has no models to unload", "reason": "no_runner"}},
+    {"name": "a generation is using it", "status": 409, "path": "/api/models/story-12b/unload", "response": {"error": "story-12b is answering a request: cancel its job, or wait for it, then unload it", "reason": "in_use"}},
+    {"name": "its stop failed", "status": 409, "path": "/api/models/story-12b/unload", "response": {"error": "story-12b (load-k3x9m2pq) would not come off: it would not stop; it may still be on the card, and its stop is asked again before any load", "reason": "unload_failed"}}
+  ]
+}

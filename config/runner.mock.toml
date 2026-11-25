@@ -1,0 +1,18 @@
+# The bootstrap's stand-in for the suite: no card, no lock, made-up words. Same model keys as
+# runner.toml, so code under test names the models it will name on the card.
+
+[runner]
+backend = "mock"
+
+[mock]
+tokens_per_second = 2000.0
+load_seconds = 0.2
+unload_seconds = 0.1
+
+[models.thinker]
+file = "Qwen3.6-27B-Q4_K_M.gguf"
+ctx = 16384
+
+[models.wordsmith]
+file = "TheDrummer_Cydonia-24B-v4.1-Q5_K_M.gguf"
+ctx = 8192

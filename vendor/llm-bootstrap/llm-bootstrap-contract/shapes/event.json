@@ -1,0 +1,29 @@
+{
+  "object": {
+    "seq": "integer",
+    "at": "number",
+    "kind": {"enum": ["coordinator_started", "state_rebuilt", "lock_waiting", "lock_taken", "ticket_asked", "ticket_offered", "ticket_unclaimed", "ticket_dropped", "ticket_cancelled", "ticket_passed_over", "ticket_refused", "rental_granted", "rental_processes", "rental_releasing", "rental_amended", "amend_refused", "rental_hung", "rental_degraded", "rental_restored", "rental_released", "rental_reclaiming", "rental_reclaimed", "process_ended", "process_gone", "process_left_alone", "process_not_ended", "port_granted", "port_released", "port_reclaimed"]},
+    "ticket_id": {"id": "ticket"},
+    "holder": "string",
+    "actor": {"id": "actor"},
+    "class": {"enum": ["responsive", "scheduled"]},
+    "models": {"array": {"ref": "need"}},
+    "label": "string",
+    "for": {"id": "correlation"},
+    "token_sha256": "string",
+    "port": "integer",
+    "purpose": "string",
+    "detail": "string",
+    "processes": {"array": {"ref": "named_process"}},
+    "process": {"ref": "named_process"},
+    "memory": {"ref": "memory"},
+    "degraded": {"ref": "degraded"},
+    "free_mib": "integer",
+    "need_mib": "integer",
+    "outside_mib": ["integer", "null"],
+    "memory_errors": "integer",
+    "not_before": "number",
+    "if_no_room": {"enum": ["wait", "fail"]}
+  },
+  "optional": ["ticket_id", "holder", "actor", "class", "models", "label", "for", "token_sha256", "port", "purpose", "detail", "processes", "process", "memory", "degraded", "free_mib", "need_mib", "outside_mib", "memory_errors", "not_before", "if_no_room"]
+}

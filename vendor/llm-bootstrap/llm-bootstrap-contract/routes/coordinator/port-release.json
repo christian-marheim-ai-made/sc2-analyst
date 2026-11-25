@@ -1,0 +1,21 @@
+{
+  "id": "coordinator.port.release",
+  "method": "POST",
+  "path": "/port/release",
+  "summary": "Give a port back once nothing listens on it any more. Only the actor that holds it can; the coordinator can hand it to someone else at once.",
+  "request": {"object": {"port": "integer", "actor": {"id": "actor"}}},
+  "responses": {
+    "200": {"object": {"released": {"ref": "port"}}},
+    "400": {"object": {"error": "string", "reason": {"enum": ["no_port", "bad_request"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["reclaimed", "released", "unknown_port", "not_yours"]}}}
+  },
+  "examples": [
+    {"name": "given back", "status": 200, "request": {"port": 31000, "actor": "srv-k3x9m2p7"}, "response": {"released": {"port": 31000, "actor": "srv-k3x9m2p7", "purpose": "model", "granted_at": 1790172000.0, "expires_at": 1790172015.0}}},
+    {"name": "it had already been taken back", "status": 409, "request": {"port": 31000, "actor": "srv-k3x9m2p7"}, "response": {"error": "port 31000 was reclaimed: no heartbeat for 15s", "reason": "reclaimed"}},
+    {"name": "given back twice", "status": 409, "request": {"port": 31000, "actor": "srv-k3x9m2p7"}, "response": {"error": "port 31000 was released", "reason": "released"}},
+    {"name": "never granted to this actor", "status": 409, "request": {"port": 31042, "actor": "srv-k3x9m2p7"}, "response": {"error": "port 31042 is not held by srv-k3x9m2p7", "reason": "unknown_port"}},
+    {"name": "held by another application, which is not named", "status": 409, "request": {"port": 31000, "actor": "srv-d4h6j9s3"}, "response": {"error": "port 31000 is not srv-d4h6j9s3's: another actor holds it", "reason": "not_yours"}},
+    {"name": "no port named", "status": 400, "request": {"actor": "srv-k3x9m2p7"}, "response": {"error": "a release names its port", "reason": "no_port"}},
+    {"name": "no actor named", "status": 400, "request": {"port": 31000}, "response": {"error": "$: missing required field \"actor\"", "reason": "bad_request"}}
+  ]
+}

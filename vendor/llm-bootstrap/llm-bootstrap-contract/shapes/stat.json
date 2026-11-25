@@ -1,0 +1,13 @@
+{
+  "object": {
+    "count": "integer",
+    "mean": "number",
+    "least": "number",
+    "most": "number",
+    "last": "number",
+    "last_at": "number",
+    "median": "number",
+    "p90": "number",
+    "kept": "integer"
+  }
+}

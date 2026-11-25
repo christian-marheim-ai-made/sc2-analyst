@@ -1,0 +1,21 @@
+{
+  "id": "coordinator.port.heartbeat",
+  "method": "POST",
+  "path": "/port/heartbeat",
+  "summary": "Say you are still alive and still using your port. The actor is named because a port number is easy to guess: only the actor that holds a port can keep it. Refused with a reason when the port is not the asker's any more, so a holder learns it lost its port from an answer, never from silence.",
+  "request": {"object": {"port": "integer", "actor": {"id": "actor"}}},
+  "responses": {
+    "200": {"object": {"port": {"ref": "port"}}},
+    "400": {"object": {"error": "string", "reason": {"enum": ["no_port", "bad_request"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["reclaimed", "released", "unknown_port", "not_yours"]}}}
+  },
+  "examples": [
+    {"name": "renewed", "status": 200, "request": {"port": 31000, "actor": "srv-k3x9m2p7"}, "response": {"port": {"port": 31000, "actor": "srv-k3x9m2p7", "purpose": "model", "granted_at": 1790172000.0, "expires_at": 1790172025.0}}},
+    {"name": "taken back after the holder went quiet", "status": 409, "request": {"port": 31000, "actor": "srv-k3x9m2p7"}, "response": {"error": "port 31000 was reclaimed: no heartbeat for 15s", "reason": "reclaimed"}},
+    {"name": "already given back", "status": 409, "request": {"port": 31000, "actor": "srv-k3x9m2p7"}, "response": {"error": "port 31000 was released", "reason": "released"}},
+    {"name": "never granted to this actor", "status": 409, "request": {"port": 31042, "actor": "srv-k3x9m2p7"}, "response": {"error": "port 31042 is not held by srv-k3x9m2p7", "reason": "unknown_port"}},
+    {"name": "held by another application, which is not named", "status": 409, "request": {"port": 31000, "actor": "srv-d4h6j9s3"}, "response": {"error": "port 31000 is not srv-d4h6j9s3's: another actor holds it", "reason": "not_yours"}},
+    {"name": "no port named", "status": 400, "request": {"actor": "srv-k3x9m2p7"}, "response": {"error": "a heartbeat names its port", "reason": "no_port"}},
+    {"name": "a port that is not a number", "status": 400, "request": {"port": "31000", "actor": "srv-k3x9m2p7"}, "response": {"error": "$.port: expected integer, got string", "reason": "bad_request"}}
+  ]
+}

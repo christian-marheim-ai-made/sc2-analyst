@@ -1,0 +1,791 @@
+{
+  "map_file": "Blackrock LE.SC2Map",
+  "files_available": [
+    "Assets\\Textures\\blackrock_4_512.dds",
+    "Assets\\Textures\\Blackrock_4_512_3_Normal.dds",
+    "Assets\\Textures\\blackrock_4_512_low.dds",
+    "Assets\\Textures\\Blackrock_7_512_Normal.dds",
+    "Assets\\Textures\\Blackrock_agria_foliage_512_2_N.dds",
+    "Assets\\Textures\\blackrock_flowerygrass_1_512.dds",
+    "Assets\\Textures\\blackrock_flowerygrass_1_512_low.dds",
+    "Assets\\Textures\\Blackrock_flowerygrass_1_512_n.dds",
+    "Assets\\Textures\\blackrock_grassnew_2_512.dds",
+    "Assets\\Textures\\blackrock_grassnew_2_512_low.dds",
+    "Assets\\Textures\\Blackrock_Grassnew_2_512_N.dds",
+    "Base.SC2Data\\GameData\\CliffData.xml",
+    "Base.SC2Data\\GameData\\LightData.xml",
+    "Base.SC2Data\\GameData\\ModelData.xml",
+    "Base.SC2Data\\GameData\\SoundData.xml",
+    "Base.SC2Data\\GameData\\SoundtrackData.xml",
+    "Base.SC2Data\\GameData\\TerrainData.xml",
+    "Base.SC2Data\\GameData\\TerrainTexData.xml",
+    "Base.SC2Data\\GameData\\WaterData.xml",
+    "CellAttribute_Pcl",
+    "CellAttribute_Pde",
+    "CellAttribute_Pnb",
+    "CellAttribute_Pnp",
+    "CellAttribute_Vsh",
+    "ComponentList.SC2Components",
+    "DocumentHeader",
+    "DocumentInfo",
+    "DocumentInfo.version",
+    "enUS.SC2Data\\LocalizedData\\GameStrings.txt",
+    "enUS.SC2Data\\LocalizedData\\ObjectStrings.txt",
+    "enUS.SC2Data\\LocalizedData\\TriggerStrings.txt",
+    "GameData.version",
+    "GameText.version",
+    "LightingMap.tga",
+    "MapInfo",
+    "MapInfo.version",
+    "MapScript.galaxy",
+    "Minimap.tga",
+    "Objects",
+    "Objects.version",
+    "Preload.xml",
+    "PreloadAssetDB.txt",
+    "t3CellFlags",
+    "t3FluffDoodad",
+    "t3HardTile",
+    "t3HeightMap",
+    "t3SyncCliffLevel",
+    "t3SyncHeightMap",
+    "t3SyncTextureInfo",
+    "t3Terrain.version",
+    "t3Terrain.xml",
+    "t3TextureMasks",
+    "t3VertCol",
+    "t3Water",
+    "Triggers",
+    "Triggers.version"
+  ],
+  "height_map": {
+    "tileSet": "BraxisAlphaEx1",
+    "uvtiling": "16.500000 18.750000 -3.000000 2.250000 ",
+    "dim": "177 201 ",
+    "offset": "0.000000 0.000000 0.000000 ",
+    "scale": "1.000000e+00 1.000000e+00 1.000000e+00 "
+  },
+  "start_locations": [
+    {
+      "name": "Start Location 001",
+      "position": {
+        "x": 141.5,
+        "y": 147.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "Start Location 002",
+      "position": {
+        "x": 36.5,
+        "y": 42.5,
+        "z": 0.0
+      }
+    }
+  ],
+  "ramps": [
+    {
+      "id": 0,
+      "dir": 6,
+      "hi": 3,
+      "lo": 2,
+      "base_center": {
+        "x": 57.0,
+        "y": 49.0,
+        "w": 1.414214,
+        "h": 0.0
+      },
+      "raw_base": "u(-7.071068e-01, 7.071068e-01) r(7.071068e-01, 7.071068e-01) c=(5.700000e+01, 4.900000e+01) w=1.414214e+00 h=0.000000e+00"
+    },
+    {
+      "id": 1,
+      "dir": 5,
+      "hi": 3,
+      "lo": 2,
+      "base_center": {
+        "x": 121.0,
+        "y": 141.0,
+        "w": 1.414214,
+        "h": 0.0
+      },
+      "raw_base": "u(7.071068e-01, -7.071068e-01) r(-7.071068e-01, -7.071068e-01) c=(1.210000e+02, 1.410000e+02) w=1.414214e+00 h=0.000000e+00"
+    }
+  ],
+  "xelnaga_towers": [],
+  "destructibles": [
+    {
+      "id": "1893674652",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 144.5,
+        "y": 68.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1226181239",
+      "type": "DestructibleRock4x4",
+      "position": {
+        "x": 77.0,
+        "y": 69.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "480954726",
+      "type": "CollapsibleRockTower",
+      "position": {
+        "x": 29.5,
+        "y": 91.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "441297050",
+      "type": "CollapsibleRockTower",
+      "position": {
+        "x": 148.5,
+        "y": 98.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1555001530",
+      "type": "DestructibleRock4x4",
+      "position": {
+        "x": 101.0,
+        "y": 121.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1273291871",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 90.5,
+        "y": 127.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1842193218",
+      "type": "DestructibleRock6x6",
+      "position": {
+        "x": 40.0,
+        "y": 92.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "2057805972",
+      "type": "DestructibleRock4x4",
+      "position": {
+        "x": 77.0,
+        "y": 76.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "365851662",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 77.5,
+        "y": 137.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1806987028",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 33.5,
+        "y": 121.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1306897173",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 104.5,
+        "y": 89.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1148167669",
+      "type": "DestructibleRock4x4",
+      "position": {
+        "x": 101.0,
+        "y": 114.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1168171686",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 101.5,
+        "y": 110.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "4480955",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 125.5,
+        "y": 96.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "776543701",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 76.5,
+        "y": 79.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "2108021471",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 52.5,
+        "y": 93.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1259657434",
+      "type": "DestructibleRock4x4",
+      "position": {
+        "x": 93.0,
+        "y": 103.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "427096921",
+      "type": "UnbuildableRocksDestructible",
+      "position": {
+        "x": 117.0,
+        "y": 147.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1330088423",
+      "type": "DestructibleRock6x6",
+      "position": {
+        "x": 138.0,
+        "y": 98.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "386231394",
+      "type": "DestructibleRock6x6",
+      "position": {
+        "x": 71.0,
+        "y": 118.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1585283044",
+      "type": "DestructibleRock6x6",
+      "position": {
+        "x": 107.0,
+        "y": 72.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "713666037",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 87.5,
+        "y": 62.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "974238144",
+      "type": "DestructibleRock4x4",
+      "position": {
+        "x": 85.0,
+        "y": 87.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "760184156",
+      "type": "DestructibleRock6x6",
+      "position": {
+        "x": 128.0,
+        "y": 71.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1322999758",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 73.5,
+        "y": 100.5,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1501268993",
+      "type": "DestructibleRock6x6",
+      "position": {
+        "x": 50.0,
+        "y": 119.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1129293997",
+      "type": "UnbuildableRocksDestructible",
+      "position": {
+        "x": 61.0,
+        "y": 43.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "162579341",
+      "type": "CollapsibleRockTowerDiagonal",
+      "position": {
+        "x": 100.5,
+        "y": 52.5,
+        "z": 0.0
+      }
+    }
+  ],
+  "no_fly_zones": [
+    {
+      "name": "No Fly Zone 003",
+      "position": {
+        "x": 59.0,
+        "y": 165.5,
+        "z": 0.0
+      },
+      "hard_radius": "7.75",
+      "soft_radius": "7.75"
+    },
+    {
+      "name": "No Fly Zone 011",
+      "position": {
+        "x": 165.4086,
+        "y": 100.728,
+        "z": 0.0
+      },
+      "hard_radius": "7.75",
+      "soft_radius": "7.75"
+    },
+    {
+      "name": "No Fly Zone 012",
+      "position": {
+        "x": 12.591,
+        "y": 89.2717,
+        "z": 0.0
+      },
+      "hard_radius": "7.75",
+      "soft_radius": "7.75"
+    },
+    {
+      "name": "No Fly Zone 007",
+      "position": {
+        "x": 162.7036,
+        "y": 128.0561,
+        "z": 0.0
+      },
+      "hard_radius": "7.75",
+      "soft_radius": "7.75"
+    },
+    {
+      "name": "No Fly Zone 002",
+      "position": {
+        "x": 122.9997,
+        "y": 21.5,
+        "z": 0.0
+      },
+      "hard_radius": null,
+      "soft_radius": null
+    },
+    {
+      "name": "No Fly Zone 004",
+      "position": {
+        "x": 118.9997,
+        "y": 24.5,
+        "z": 0.0
+      },
+      "hard_radius": "7.75",
+      "soft_radius": "7.75"
+    },
+    {
+      "name": "No Fly Zone 001",
+      "position": {
+        "x": 55.0,
+        "y": 168.5,
+        "z": 0.0
+      },
+      "hard_radius": "7.75",
+      "soft_radius": "7.75"
+    },
+    {
+      "name": "No Fly Zone 006",
+      "position": {
+        "x": 115.0,
+        "y": 22.0,
+        "z": 0.0
+      },
+      "hard_radius": "7.75",
+      "soft_radius": "7.75"
+    },
+    {
+      "name": "No Fly Zone 009",
+      "position": {
+        "x": 161.0,
+        "y": 168.0,
+        "z": 0.0
+      },
+      "hard_radius": "7.75",
+      "soft_radius": "7.75"
+    },
+    {
+      "name": "No Fly Zone 005",
+      "position": {
+        "x": 63.0,
+        "y": 168.0,
+        "z": 0.0
+      },
+      "hard_radius": "7.75",
+      "soft_radius": "7.75"
+    },
+    {
+      "name": "No Fly Zone 008",
+      "position": {
+        "x": 15.2961,
+        "y": 61.9438,
+        "z": 0.0
+      },
+      "hard_radius": "7.75",
+      "soft_radius": "7.75"
+    },
+    {
+      "name": "No Fly Zone 010",
+      "position": {
+        "x": 16.9997,
+        "y": 22.0,
+        "z": 0.0
+      },
+      "hard_radius": "7.75",
+      "soft_radius": "7.75"
+    }
+  ],
+  "resource_clusters": [
+    {
+      "id": 0,
+      "kind": "base",
+      "center": {
+        "x": 86.9,
+        "y": 151.7
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 1,
+      "kind": "base",
+      "center": {
+        "x": 28.8,
+        "y": 108.6
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 2,
+      "kind": "base",
+      "center": {
+        "x": 126.5,
+        "y": 125.1
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 3,
+      "kind": "base",
+      "center": {
+        "x": 41.6,
+        "y": 155.1
+      },
+      "resource_counts": {
+        "MineralField": 3,
+        "MineralField750": 3,
+        "VespeneGeyser": 1
+      },
+      "mineral_count": 6,
+      "geyser_count": 1,
+      "point_count": 7,
+      "minerals_at_start": 8100,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 4,
+      "kind": "base",
+      "center": {
+        "x": 32.7,
+        "y": 39.0
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 5,
+      "kind": "base",
+      "center": {
+        "x": 136.4,
+        "y": 34.9
+      },
+      "resource_counts": {
+        "MineralField": 3,
+        "MineralField750": 3,
+        "VespeneGeyser": 1
+      },
+      "mineral_count": 6,
+      "geyser_count": 1,
+      "point_count": 7,
+      "minerals_at_start": 8100,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 6,
+      "kind": "base",
+      "center": {
+        "x": 48.8,
+        "y": 137.5
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 7,
+      "kind": "base",
+      "center": {
+        "x": 91.1,
+        "y": 38.3
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 8,
+      "kind": "base",
+      "center": {
+        "x": 119.8,
+        "y": 71.2
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 9,
+      "kind": "base",
+      "center": {
+        "x": 69.4,
+        "y": 35.3
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 10,
+      "kind": "base",
+      "center": {
+        "x": 145.3,
+        "y": 151.0
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 11,
+      "kind": "base",
+      "center": {
+        "x": 129.2,
+        "y": 52.5
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 12,
+      "kind": "base",
+      "center": {
+        "x": 51.5,
+        "y": 64.9
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 13,
+      "kind": "base",
+      "center": {
+        "x": 58.2,
+        "y": 118.8
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 14,
+      "kind": "base",
+      "center": {
+        "x": 108.6,
+        "y": 154.7
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 15,
+      "kind": "base",
+      "center": {
+        "x": 149.2,
+        "y": 81.4
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    }
+  ],
+  "mineral_walls": [],
+  "unknown_resource_types": [],
+  "notes": [
+    "Ramp/cliff info comes from t3Terrain.xml rampList.",
+    "Object positions come from the Objects XML (ObjectPoint / ObjectUnit).",
+    "Resource clusters are single-linkage groupings at radius 6.0 map cells; a group of at most 3 base-material patches within 8.0 cells of a larger group is attached to it.",
+    "resource_clusters are BASES; mineral_walls are groups of wall material - patches below 500 minerals at map start, e.g. MineralField450. Classification is per patch from its minerals at map start, never updated as patches are mined out (ruling 2026-09-24).",
+    "minerals_at_start / patch_min_minerals: nominal-by-type-name; unverified against game data (2026-09-24)",
+    "start_locations are the map's StartLoc candidates, not the spawns: a map may carry more than the game has players (Old Sun Temple LE: four on a map played 1v1). Spawns come from the replay - tools/spawns_from_replay.py."
+  ]
+}

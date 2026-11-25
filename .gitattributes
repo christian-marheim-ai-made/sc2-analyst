@@ -1,0 +1,16 @@
+# Normalise text to LF in the repository. Without this, Windows checkouts rewrite every file
+# on first touch and the next diff is 90 files of pure line-ending churn.
+* text=auto eol=lf
+
+# Binary - never touch these.
+*.png     binary
+*.tga     binary
+*.zip     binary
+*.gguf    binary
+*.SC2Map     binary
+*.SC2Replay  binary
+
+# Large reference data: keep it out of diffs, it is never reviewed line by line.
+archive/**/*.json        -diff
+docs/context/reference/*.json -diff
+data/maps/*.json         -diff

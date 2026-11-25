@@ -1,0 +1,4 @@
+# Where this machine keeps the analyser's data: replays (anonymised twins), game records, reports.
+# A relative path is taken from the repository root. To use another place, copy this file to
+# config/analyst.local.toml (not tracked) and change it there, or set SC2A_DATA_HOME.
+data_home = "data-home"

@@ -1,0 +1,794 @@
+{
+  "map_file": "Reclamation LE.SC2Map",
+  "files_available": [
+    "Base.SC2Data\\GameData\\LightData.xml",
+    "Base.SC2Data\\GameData\\ModelData.xml",
+    "Base.SC2Data\\GameData\\TerrainData.xml",
+    "CellAttribute_Pnb",
+    "CellAttribute_Pnp",
+    "ComponentList.SC2Components",
+    "deDE.SC2Data\\LocalizedData\\GameStrings.txt",
+    "DocumentHeader",
+    "DocumentInfo",
+    "DocumentInfo.version",
+    "enUS.SC2Data\\LocalizedData\\GameStrings.txt",
+    "enUS.SC2Data\\LocalizedData\\TriggerStrings.txt",
+    "esES.SC2Data\\LocalizedData\\GameStrings.txt",
+    "esMX.SC2Data\\LocalizedData\\GameStrings.txt",
+    "frFR.SC2Data\\LocalizedData\\GameStrings.txt",
+    "GameData.version",
+    "GameText.version",
+    "itIT.SC2Data\\LocalizedData\\GameStrings.txt",
+    "koKR.SC2Data\\LocalizedData\\GameStrings.txt",
+    "MapInfo",
+    "MapInfo.version",
+    "MapScript.galaxy",
+    "Minimap.tga",
+    "Objects",
+    "Objects.version",
+    "plPL.SC2Data\\LocalizedData\\GameStrings.txt",
+    "Preload.xml",
+    "PreloadAssetDB.txt",
+    "ptBR.SC2Data\\LocalizedData\\GameStrings.txt",
+    "ruRU.SC2Data\\LocalizedData\\GameStrings.txt",
+    "t3CellFlags",
+    "t3FluffDoodad",
+    "t3HardTile",
+    "t3HeightMap",
+    "t3SyncCliffLevel",
+    "t3SyncHeightMap",
+    "t3SyncTextureInfo",
+    "t3Terrain.version",
+    "t3Terrain.xml",
+    "t3TextureMasks",
+    "t3VertCol",
+    "t3Water",
+    "Triggers",
+    "Triggers.version",
+    "zhCN.SC2Data\\LocalizedData\\GameStrings.txt",
+    "zhTW.SC2Data\\LocalizedData\\GameStrings.txt"
+  ],
+  "height_map": {
+    "tileSet": "HybridLabXelNaga",
+    "uvtiling": "18.000000 18.750000 -1.500000 -1.500000 ",
+    "dim": "193 201 ",
+    "offset": "0.000000 0.000000 0.000000 ",
+    "scale": "1.000000e+00 1.000000e+00 1.000000e+00 "
+  },
+  "start_locations": [
+    {
+      "name": "Start Location 004",
+      "position": {
+        "x": 100.5,
+        "y": 30.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "Start Location 002",
+      "position": {
+        "x": 156.5,
+        "y": 30.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "Start Location 001",
+      "position": {
+        "x": 35.5,
+        "y": 157.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "Start Location 003",
+      "position": {
+        "x": 91.5,
+        "y": 157.5,
+        "z": 0.0
+      }
+    }
+  ],
+  "ramps": [
+    {
+      "id": 0,
+      "dir": 4,
+      "hi": 3,
+      "lo": 2,
+      "base_center": {
+        "x": 113.0,
+        "y": 35.0,
+        "w": 1.414214,
+        "h": 0.0
+      },
+      "raw_base": "u(-7.071068e-01, -7.071068e-01) r(-7.071068e-01, 7.071068e-01) c=(1.130000e+02, 3.500000e+01) w=1.414214e+00 h=0.000000e+00"
+    },
+    {
+      "id": 1,
+      "dir": 5,
+      "hi": 3,
+      "lo": 2,
+      "base_center": {
+        "x": 141.0,
+        "y": 37.0,
+        "w": 1.414214,
+        "h": 0.0
+      },
+      "raw_base": "u(7.071068e-01, -7.071068e-01) r(-7.071068e-01, -7.071068e-01) c=(1.410000e+02, 3.700000e+01) w=1.414214e+00 h=0.000000e+00"
+    },
+    {
+      "id": 2,
+      "dir": 5,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 54.0,
+        "y": 54.0,
+        "w": 5.656854,
+        "h": 0.0
+      },
+      "raw_base": "u(7.071068e-01, -7.071068e-01) r(-7.071068e-01, -7.071068e-01) c=(5.400000e+01, 5.400000e+01) w=5.656854e+00 h=0.000000e+00"
+    },
+    {
+      "id": 3,
+      "dir": 5,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 128.0,
+        "y": 54.0,
+        "w": 5.656854,
+        "h": 0.0
+      },
+      "raw_base": "u(7.071068e-01, -7.071068e-01) r(-7.071068e-01, -7.071068e-01) c=(1.280000e+02, 5.400000e+01) w=5.656854e+00 h=0.000000e+00"
+    },
+    {
+      "id": 4,
+      "dir": 4,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 71.0,
+        "y": 59.0,
+        "w": 4.24264,
+        "h": 0.0
+      },
+      "raw_base": "u(-7.071068e-01, -7.071068e-01) r(-7.071068e-01, 7.071068e-01) c=(7.100000e+01, 5.900000e+01) w=4.242640e+00 h=0.000000e+00"
+    },
+    {
+      "id": 5,
+      "dir": 7,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 75.0,
+        "y": 85.0,
+        "w": 4.24264,
+        "h": 0.0
+      },
+      "raw_base": "u(7.071068e-01, 7.071068e-01) r(7.071068e-01, -7.071068e-01) c=(7.500000e+01, 8.500000e+01) w=4.242640e+00 h=0.000000e+00"
+    },
+    {
+      "id": 6,
+      "dir": 7,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 117.0,
+        "y": 83.0,
+        "w": 4.24264,
+        "h": 0.0
+      },
+      "raw_base": "u(7.071068e-01, 7.071068e-01) r(7.071068e-01, -7.071068e-01) c=(1.170000e+02, 8.300000e+01) w=4.242640e+00 h=0.000000e+00"
+    },
+    {
+      "id": 7,
+      "dir": 6,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 85.0,
+        "y": 87.0,
+        "w": 4.24264,
+        "h": 0.0
+      },
+      "raw_base": "u(-7.071068e-01, 7.071068e-01) r(7.071068e-01, 7.071068e-01) c=(8.500000e+01, 8.700000e+01) w=4.242640e+00 h=0.000000e+00"
+    },
+    {
+      "id": 8,
+      "dir": 6,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 39.0,
+        "y": 95.0,
+        "w": 4.24264,
+        "h": 0.0
+      },
+      "raw_base": "u(-7.071068e-01, 7.071068e-01) r(7.071068e-01, 7.071068e-01) c=(3.900000e+01, 9.500000e+01) w=4.242640e+00 h=0.000000e+00"
+    },
+    {
+      "id": 9,
+      "dir": 5,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 153.0,
+        "y": 93.0,
+        "w": 4.24264,
+        "h": 0.0
+      },
+      "raw_base": "u(7.071068e-01, -7.071068e-01) r(-7.071068e-01, -7.071068e-01) c=(1.530000e+02, 9.300000e+01) w=4.242640e+00 h=0.000000e+00"
+    },
+    {
+      "id": 10,
+      "dir": 5,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 107.0,
+        "y": 101.0,
+        "w": 4.24264,
+        "h": 0.0
+      },
+      "raw_base": "u(7.071068e-01, -7.071068e-01) r(-7.071068e-01, -7.071068e-01) c=(1.070000e+02, 1.010000e+02) w=4.242640e+00 h=0.000000e+00"
+    },
+    {
+      "id": 11,
+      "dir": 4,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 75.0,
+        "y": 105.0,
+        "w": 4.24264,
+        "h": 0.0
+      },
+      "raw_base": "u(-7.071068e-01, -7.071068e-01) r(-7.071068e-01, 7.071068e-01) c=(7.500000e+01, 1.050000e+02) w=4.242640e+00 h=0.000000e+00"
+    },
+    {
+      "id": 12,
+      "dir": 4,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 117.0,
+        "y": 103.0,
+        "w": 4.24264,
+        "h": 0.0
+      },
+      "raw_base": "u(-7.071068e-01, -7.071068e-01) r(-7.071068e-01, 7.071068e-01) c=(1.170000e+02, 1.030000e+02) w=4.242640e+00 h=0.000000e+00"
+    },
+    {
+      "id": 13,
+      "dir": 7,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 121.0,
+        "y": 129.0,
+        "w": 4.24264,
+        "h": 0.0
+      },
+      "raw_base": "u(7.071068e-01, 7.071068e-01) r(7.071068e-01, -7.071068e-01) c=(1.210000e+02, 1.290000e+02) w=4.242640e+00 h=0.000000e+00"
+    },
+    {
+      "id": 14,
+      "dir": 6,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 64.0,
+        "y": 134.0,
+        "w": 5.656854,
+        "h": 0.0
+      },
+      "raw_base": "u(-7.071068e-01, 7.071068e-01) r(7.071068e-01, 7.071068e-01) c=(6.400000e+01, 1.340000e+02) w=5.656854e+00 h=0.000000e+00"
+    },
+    {
+      "id": 15,
+      "dir": 6,
+      "hi": 2,
+      "lo": 1,
+      "base_center": {
+        "x": 138.0,
+        "y": 134.0,
+        "w": 5.656854,
+        "h": 0.0
+      },
+      "raw_base": "u(-7.071068e-01, 7.071068e-01) r(7.071068e-01, 7.071068e-01) c=(1.380000e+02, 1.340000e+02) w=5.656854e+00 h=0.000000e+00"
+    },
+    {
+      "id": 16,
+      "dir": 6,
+      "hi": 3,
+      "lo": 2,
+      "base_center": {
+        "x": 51.0,
+        "y": 151.0,
+        "w": 1.414214,
+        "h": 0.0
+      },
+      "raw_base": "u(-7.071068e-01, 7.071068e-01) r(7.071068e-01, 7.071068e-01) c=(5.100000e+01, 1.510000e+02) w=1.414214e+00 h=0.000000e+00"
+    },
+    {
+      "id": 17,
+      "dir": 7,
+      "hi": 3,
+      "lo": 2,
+      "base_center": {
+        "x": 79.0,
+        "y": 153.0,
+        "w": 1.414214,
+        "h": 0.0
+      },
+      "raw_base": "u(7.071068e-01, 7.071068e-01) r(7.071068e-01, -7.071068e-01) c=(7.900000e+01, 1.530000e+02) w=1.414214e+00 h=0.000000e+00"
+    }
+  ],
+  "xelnaga_towers": [],
+  "destructibles": [
+    {
+      "id": "1056646285",
+      "type": "UnbuildableBricksDestructible",
+      "position": {
+        "x": 119.0,
+        "y": 39.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1708184194",
+      "type": "UnbuildableBricksDestructible",
+      "position": {
+        "x": 73.0,
+        "y": 149.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1744365638",
+      "type": "DestructibleRockEx16x6",
+      "position": {
+        "x": 128.0,
+        "y": 58.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "1638503509",
+      "type": "DestructibleRockEx1DiagonalHugeBLUR",
+      "position": {
+        "x": 117.0,
+        "y": 93.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "663479007",
+      "type": "DestructibleRockEx16x6",
+      "position": {
+        "x": 144.0,
+        "y": 64.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "722171762",
+      "type": "DestructibleRockEx1DiagonalHugeBLUR",
+      "position": {
+        "x": 75.0,
+        "y": 95.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "332281343",
+      "type": "UnbuildableBricksDestructible",
+      "position": {
+        "x": 135.0,
+        "y": 41.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "10899360",
+      "type": "DestructibleRockEx16x6",
+      "position": {
+        "x": 48.0,
+        "y": 124.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "558897596",
+      "type": "DestructibleRockEx16x6",
+      "position": {
+        "x": 64.0,
+        "y": 130.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "131720791",
+      "type": "UnbuildableBricksDestructible",
+      "position": {
+        "x": 57.0,
+        "y": 147.0,
+        "z": 0.0
+      }
+    }
+  ],
+  "no_fly_zones": [],
+  "resource_clusters": [
+    {
+      "id": 0,
+      "kind": "base",
+      "center": {
+        "x": 32.2,
+        "y": 116.0
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 1,
+      "kind": "base",
+      "center": {
+        "x": 65.5,
+        "y": 157.1
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 2,
+      "kind": "base",
+      "center": {
+        "x": 124.6,
+        "y": 146.7
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 3,
+      "kind": "base",
+      "center": {
+        "x": 159.8,
+        "y": 72.0
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 4,
+      "kind": "base",
+      "center": {
+        "x": 104.1,
+        "y": 51.6
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 5,
+      "kind": "base",
+      "center": {
+        "x": 87.9,
+        "y": 136.4
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 6,
+      "kind": "base",
+      "center": {
+        "x": 57.5,
+        "y": 97.3
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "RichVespeneGeyser": 1
+      },
+      "mineral_count": 8,
+      "geyser_count": 1,
+      "point_count": 9,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 7,
+      "kind": "base",
+      "center": {
+        "x": 160.4,
+        "y": 116.6
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 8,
+      "kind": "base",
+      "center": {
+        "x": 134.5,
+        "y": 90.7
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "RichVespeneGeyser": 1
+      },
+      "mineral_count": 8,
+      "geyser_count": 1,
+      "point_count": 9,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 9,
+      "kind": "base",
+      "center": {
+        "x": 31.6,
+        "y": 71.4
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 10,
+      "kind": "base",
+      "center": {
+        "x": 160.8,
+        "y": 27.0
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 11,
+      "kind": "base",
+      "center": {
+        "x": 31.2,
+        "y": 161.0
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 12,
+      "kind": "base",
+      "center": {
+        "x": 95.8,
+        "y": 161.0
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 13,
+      "kind": "base",
+      "center": {
+        "x": 65.2,
+        "y": 117.0
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 14,
+      "kind": "base",
+      "center": {
+        "x": 67.4,
+        "y": 41.3
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 15,
+      "kind": "base",
+      "center": {
+        "x": 148.8,
+        "y": 47.0
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 16,
+      "kind": "base",
+      "center": {
+        "x": 126.8,
+        "y": 71.0
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 17,
+      "kind": "base",
+      "center": {
+        "x": 96.2,
+        "y": 27.0
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 18,
+      "kind": "base",
+      "center": {
+        "x": 126.5,
+        "y": 30.9
+      },
+      "resource_counts": {
+        "MineralField": 4,
+        "MineralField750": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    },
+    {
+      "id": 19,
+      "kind": "base",
+      "center": {
+        "x": 43.2,
+        "y": 141.0
+      },
+      "resource_counts": {
+        "MineralField750": 4,
+        "MineralField": 4,
+        "VespeneGeyser": 2
+      },
+      "mineral_count": 8,
+      "geyser_count": 2,
+      "point_count": 10,
+      "minerals_at_start": 10800,
+      "patch_min_minerals": 900
+    }
+  ],
+  "mineral_walls": [],
+  "unknown_resource_types": [],
+  "notes": [
+    "Ramp/cliff info comes from t3Terrain.xml rampList.",
+    "Object positions come from the Objects XML (ObjectPoint / ObjectUnit).",
+    "Resource clusters are single-linkage groupings at radius 6.0 map cells; a group of at most 3 base-material patches within 8.0 cells of a larger group is attached to it.",
+    "resource_clusters are BASES; mineral_walls are groups of wall material - patches below 500 minerals at map start, e.g. MineralField450. Classification is per patch from its minerals at map start, never updated as patches are mined out (ruling 2026-09-24).",
+    "minerals_at_start / patch_min_minerals: nominal-by-type-name; unverified against game data (2026-09-24)",
+    "start_locations are the map's StartLoc candidates, not the spawns: a map may carry more than the game has players (Old Sun Temple LE: four on a map played 1v1). Spawns come from the replay - tools/spawns_from_replay.py."
+  ]
+}

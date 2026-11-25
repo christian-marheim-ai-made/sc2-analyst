@@ -1,0 +1,16 @@
+{
+  "object": {
+    "shape": "string",
+    "n_vocab": "integer",
+    "n_audio_ctx": "integer",
+    "n_audio_state": "integer",
+    "n_audio_head": "integer",
+    "n_audio_layer": "integer",
+    "n_text_ctx": "integer",
+    "n_text_state": "integer",
+    "n_text_head": "integer",
+    "n_text_layer": "integer",
+    "n_mels": "integer",
+    "ftype": "integer"
+  }
+}

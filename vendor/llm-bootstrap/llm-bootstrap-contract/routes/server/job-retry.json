@@ -1,0 +1,21 @@
+{
+  "id": "server.jobs.retry",
+  "method": "POST",
+  "path": "/api/jobs/{id}/retry",
+  "summary": "Run a failed or cancelled job again, as a NEW job whose `retry_of` names the old one; the old one keeps saying what happened to it. Whatever the old job's end stopped - jobs waiting on it, the rest of its fan - is revived the same way, with `after` pointed at the new job, and `revived` names those new jobs. A job is retried once: retry its latest attempt.",
+  "request": null,
+  "responses": {
+    "200": {"object": {"job": {"ref": "job"}, "revived": {"array": {"id": "job"}}}},
+    "404": {"object": {"error": "string", "reason": {"enum": ["no_such_job"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["not_retryable", "already_retried", "no_workspace"]}, "status": {"enum": ["queued", "running", "held", "done", "failed", "cancelled", "claimed"]}}, "optional": ["status"]},
+    "503": {"object": {"error": "string", "reason": {"enum": ["store_unreadable"]}}}
+  },
+  "examples": [
+    {"name": "retried, and the job that waited on it revived", "status": 200, "path": "/api/jobs/j-0009/retry", "response": {"job": {"id": "j-0011", "kind": "generate", "name": "part 3", "status": "queued", "priority": "batch", "queue_pos": 1, "after": [], "group": null, "scope": "book-1", "correlation_id": "c-20260923-140200-e5g7k2m9", "correlation_source": "server", "client": "cli-w5r8t2h6", "claimed_by": null, "retry_of": "j-0009", "model": "demo-7b", "n": 1, "n_done": 0, "progress": {}, "created": 1790172120.0, "finished": null, "stalled_for": null, "error": null}, "revived": ["j-0012"]}},
+    {"name": "it did not fail", "status": 409, "path": "/api/jobs/j-0007/retry", "response": {"error": "j-0007 is done: only a failed or cancelled job can be retried", "reason": "not_retryable", "status": "done"}},
+    {"name": "retried already", "status": 409, "path": "/api/jobs/j-0009/retry", "response": {"error": "j-0009 was already retried: retry its latest attempt", "reason": "already_retried", "status": "failed"}},
+    {"name": "nothing bound", "status": 409, "path": "/api/jobs/j-0009/retry", "response": {"error": "no folder is bound: choose one first", "reason": "no_workspace"}},
+    {"name": "no such job", "status": 404, "path": "/api/jobs/j-9999/retry", "response": {"error": "no such job: j-9999", "reason": "no_such_job"}},
+    {"name": "the job store could not be read", "status": 503, "path": "/api/jobs/j-0009/retry", "response": {"error": "the job store could not be read: [Errno 13] Permission denied: 'D:/work/book/jobs.json'", "reason": "store_unreadable"}}
+  ]
+}

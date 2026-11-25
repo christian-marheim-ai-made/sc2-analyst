@@ -1,0 +1,19 @@
+{
+  "id": "server.pipeline.close",
+  "method": "POST",
+  "path": "/api/pipeline/close",
+  "summary": "Close the pipeline this id names: its ticket is given up if it still waits; a load under way is given up; every model comes off, and only once every process of it has gone does the card go back. The answer waits for that, and is the pipeline closed, saying why. A generation still running on a model that comes off fails. Work still queued afterwards opens the queue's own pipeline and asks for the card again, behind whoever is in line. Refused `not_open` when the id names no open pipeline here, and `unload_failed` when a model would not come off: the pipeline stays open and holds the card, since what would not stop may still be on it.",
+  "request": {"object": {"pipeline": {"id": "pipeline"}}},
+  "responses": {
+    "200": {"object": {"pipeline": {"ref": "pipeline"}}},
+    "400": {"object": {"error": "string", "reason": {"enum": ["bad_request"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["not_open", "no_runner", "unload_failed"]}}}
+  },
+  "examples": [
+    {"name": "closed: its models off, and the card given back", "status": 200, "request": {"pipeline": "pipe-k3x9m2p7"}, "response": {"pipeline": {"id": "pipe-k3x9m2p7", "state": "closed", "why": "closed by the application", "since": 1790175600.0, "label": "plotting session", "models": ["story-12b"], "up": [], "class": "responsive", "keep_s": 120.0, "opened_by": "application"}}},
+    {"name": "a pipeline id that is not one", "status": 400, "request": {"pipeline": "srv-k3x9m2p7"}, "response": {"error": "$.pipeline: expected a pipeline id, got \"srv-k3x9m2p7\"", "reason": "bad_request"}},
+    {"name": "closed already", "status": 409, "request": {"pipeline": "pipe-k3x9m2p7"}, "response": {"error": "pipe-k3x9m2p7 is not open: closed by the application", "reason": "not_open"}},
+    {"name": "no runner behind the server", "status": 409, "request": {"pipeline": "pipe-k3x9m2p7"}, "response": {"error": "no model runner behind this server: it has no pipeline", "reason": "no_runner"}},
+    {"name": "a model would not come off", "status": 409, "request": {"pipeline": "pipe-k3x9m2p7"}, "response": {"error": "pipe-k3x9m2p7 is not closed: story-12b would not come off (it would not stop); the card is kept while it may still be on it", "reason": "unload_failed"}}
+  ]
+}

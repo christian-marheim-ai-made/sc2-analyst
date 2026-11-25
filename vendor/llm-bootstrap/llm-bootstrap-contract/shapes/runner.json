@@ -1,0 +1,22 @@
+{
+  "object": {
+    "backend": {"enum": ["mock", "real", "llamacpp"]},
+    "loaded": ["string", "null"],
+    "loaded_label": ["string", "null"],
+    "load": [{"id": "actor"}, "null"],
+    "loading": ["string", "null"],
+    "in_use": "integer",
+    "in_use_models": {"array": "string"},
+    "loaded_at": ["number", "null"],
+    "last_used": ["number", "null"],
+    "load_seconds": "number",
+    "loads_this_session": "integer",
+    "pid": ["integer", "null"],
+    "port": ["integer", "null"],
+    "idle_unload_s": "number",
+    "load_cold": ["boolean", "null"],
+    "load_baseline_seconds": ["number", "null"],
+    "load_slow": "boolean",
+    "lease": {"object": {"holder": [{"id": "actor"}, "null"], "since": ["number", "null"], "held_seconds": ["number", "null"], "model_key": ["string", "null"]}}
+  }
+}

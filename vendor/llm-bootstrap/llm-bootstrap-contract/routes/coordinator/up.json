@@ -1,0 +1,13 @@
+{
+  "id": "coordinator.up",
+  "method": "GET",
+  "path": "/up",
+  "summary": "Is the coordinator up? The one question an application's server asks it before anything else - as it starts, so that its health can say whether the coordinator answers - and the answer says that, and the version of the contract the coordinator runs (`contract_version`, as a server's health carries its own: `contract_version()` in the contract's validate.py), so that a server can tell whether the two speak one contract, and nothing more: nothing of the card, its rental, the tickets in line or the ports, which are the operator's (`/state`), since no answer to an application names another.",
+  "request": null,
+  "responses": {
+    "200": {"object": {"up": {"enum": [true]}, "contract_version": "string"}}
+  },
+  "examples": [
+    {"name": "up", "status": 200, "response": {"up": true, "contract_version": "5d0c9e2a7b41"}}
+  ]
+}

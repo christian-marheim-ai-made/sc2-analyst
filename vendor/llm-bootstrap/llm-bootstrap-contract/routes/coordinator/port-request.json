@@ -1,0 +1,20 @@
+{
+  "id": "coordinator.port.request",
+  "method": "POST",
+  "path": "/port/request",
+  "summary": "Ask for a port to run something on - an application's own server, a model server - so that two applications on one machine never pick the same one. The coordinator hands out ports from its range, one per actor per purpose, skipping any port something else on the machine is already using; the same actor asking again for the same purpose renews the one it holds. A port is kept by heartbeating before it expires, as a rental is, and taken back when its holder goes quiet. The actor is the holder: a port is never held by a name.",
+  "request": {"object": {"actor": {"id": "actor"}, "purpose": "string", "ttl_s": "number"}, "optional": ["ttl_s"]},
+  "responses": {
+    "200": {"object": {"port": {"ref": "port"}}},
+    "400": {"object": {"error": "string", "reason": {"enum": ["no_purpose", "bad_ttl", "bad_request"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["exhausted"]}}}
+  },
+  "examples": [
+    {"name": "granted", "status": 200, "request": {"actor": "srv-k3x9m2p7", "purpose": "model"}, "response": {"port": {"port": 31000, "actor": "srv-k3x9m2p7", "purpose": "model", "granted_at": 1790172000.0, "expires_at": 1790172015.0}}},
+    {"name": "the same actor asking again renews the port it holds", "status": 200, "request": {"actor": "srv-k3x9m2p7", "purpose": "model", "ttl_s": 30}, "response": {"port": {"port": 31000, "actor": "srv-k3x9m2p7", "purpose": "model", "granted_at": 1790172000.0, "expires_at": 1790172040.0}}},
+    {"name": "every port in the range is held or in use", "status": 409, "request": {"actor": "srv-d4h6j9s3", "purpose": "server"}, "response": {"error": "no free port in 31000-31099: 97 held, 3 in use by something else", "reason": "exhausted"}},
+    {"name": "no purpose named", "status": 400, "request": {"actor": "srv-k3x9m2p7"}, "response": {"error": "a port needs a purpose: say what will listen on it", "reason": "no_purpose"}},
+    {"name": "a lifetime that cannot work", "status": 400, "request": {"actor": "srv-k3x9m2p7", "purpose": "model", "ttl_s": 0}, "response": {"error": "ttl_s must be positive", "reason": "bad_ttl"}},
+    {"name": "an actor id that is not one", "status": 400, "request": {"actor": "writer-1", "purpose": "model"}, "response": {"error": "$.actor: expected an actor id, got \"writer-1\"", "reason": "bad_request"}}
+  ]
+}

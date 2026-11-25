@@ -1,0 +1,29 @@
+{
+  "object": {
+    "variant": "integer",
+    "of": "integer",
+    "budget": "integer",
+    "spent": "integer",
+    "handle": {"id": "handle"},
+    "at": "number",
+    "reported": "boolean",
+    "waited": "integer",
+    "loading": "boolean",
+    "stage": "string",
+    "tokens": "integer",
+    "tok_s": "number",
+    "waiting_for": "string",
+    "waited_s": "integer",
+    "land_error": "string",
+    "count": {"object": {"prompt_tokens": "integer", "room": "integer", "context": "integer"}},
+    "due_s": "number",
+    "free_mib": ["integer", "null"],
+    "need_mib": ["integer", "null"],
+    "outside_mib": ["integer", "null"],
+    "patience_left_s": "integer"
+  },
+  "optional": ["variant", "of", "budget", "spent", "handle", "at", "reported", "waited",
+               "loading", "stage", "tokens", "tok_s", "waiting_for", "waited_s", "land_error",
+               "count", "due_s", "free_mib", "need_mib", "outside_mib", "patience_left_s"],
+  "open": true
+}

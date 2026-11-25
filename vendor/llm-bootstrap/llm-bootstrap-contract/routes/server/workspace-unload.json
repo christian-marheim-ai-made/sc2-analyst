@@ -1,0 +1,16 @@
+{
+  "id": "server.workspace.unload",
+  "method": "POST",
+  "path": "/api/workspace/unload",
+  "summary": "Put the folder down: bound to nothing, nothing deleted. `was` is the folder that was released, or null when nothing was bound - one fact, so there is no separate 'already unloaded' flag to disagree with it. Refused while a job is unfinished, as a bind is.",
+  "request": null,
+  "responses": {
+    "200": {"object": {"loaded": {"enum": [false]}, "was": ["string", "null"]}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["busy"]}, "job": {"id": "job"}}}
+  },
+  "examples": [
+    {"name": "released", "status": 200, "response": {"loaded": false, "was": "D:/work/book"}},
+    {"name": "nothing was bound", "status": 200, "response": {"loaded": false, "was": null}},
+    {"name": "a job is still running", "status": 409, "response": {"error": "a job is unfinished: part 2", "reason": "busy", "job": "j-0008"}}
+  ]
+}

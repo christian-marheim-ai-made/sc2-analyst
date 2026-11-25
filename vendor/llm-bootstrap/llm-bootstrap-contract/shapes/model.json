@@ -1,0 +1,24 @@
+{
+  "object": {
+    "key": "string",
+    "label": "string",
+    "engine": {"enum": ["llamacpp", "whisper"]},
+    "note": "string",
+    "context": ["integer", "null"],
+    "loaded": "boolean",
+    "state": {"ref": "model_state"},
+    "pinned": "boolean",
+    "file": [{"object": {
+      "name": "string",
+      "path": "string",
+      "present": "boolean",
+      "size": ["integer", "null"],
+      "disk": ["string", "null"]
+    }}, "null"],
+    "header": [{"ref": "gguf_header"}, {"ref": "ggml_header"}, "null"],
+    "problems": {"array": "string"},
+    "loads": [{"object": {"cold": {"ref": "load_history"}, "warm": {"ref": "load_history"}}}, "null"],
+    "read_speed": [{"ref": "read_speed"}, "null"],
+    "stats": [{"ref": "model_stats"}, "null"]
+  }
+}

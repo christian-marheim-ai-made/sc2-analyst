@@ -1,0 +1,24 @@
+{
+  "id": "server.jobs.claim",
+  "method": "POST",
+  "path": "/api/jobs/{id}/claim",
+  "summary": "Record that an application has taken a job's result, so it stops being offered. Exactly one claim succeeds. Each way a claim can fail is a different fact with its own reason: another claimant got there first (nothing to do), the job has not finished (try later), the job ended without a result that can be claimed - it failed or was cancelled, so waiting will never help (retry it instead), or the job is gone. The job-state reasons carry the job's `status`. `client` names who is claiming, and the job keeps it as `claimed_by`; it is recorded, never enforced - a result may be taken by another client on purpose.",
+  "request": {"object": {"client": {"id": "actor"}}, "optional": ["client"]},
+  "responses": {
+    "200": {"object": {"job": {"ref": "job"}}},
+    "400": {"object": {"error": "string", "reason": {"enum": ["bad_request"]}}},
+    "404": {"object": {"error": "string", "reason": {"enum": ["no_such_job"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["claimed_elsewhere", "not_done", "ended", "no_workspace"]}, "status": {"enum": ["queued", "running", "held", "done", "failed", "cancelled", "claimed"]}}, "optional": ["status"]},
+    "503": {"object": {"error": "string", "reason": {"enum": ["store_unreadable"]}}}
+  },
+  "examples": [
+    {"name": "claimed", "status": 200, "path": "/api/jobs/j-0007/claim", "response": {"job": {"id": "j-0007", "kind": "generate", "name": "bench: a haiku about rain", "status": "claimed", "priority": "interactive", "queue_pos": 0, "after": [], "group": null, "scope": null, "correlation_id": "c-20260923-140012-a3k9m2p7", "correlation_source": "client", "client": "cli-w5r8t2h6", "claimed_by": "cli-w5r8t2h6", "retry_of": null, "model": "demo-7b", "n": 1, "n_done": 1, "progress": {}, "created": 1790172012.5, "finished": 1790172031.25, "stalled_for": null, "error": null}}, "request": {"client": "cli-w5r8t2h6"}},
+    {"name": "a client that is not an actor id", "status": 400, "path": "/api/jobs/j-0007/claim", "request": {"client": "tab-2"}, "response": {"error": "$.client: expected an actor id, got \"tab-2\"", "reason": "bad_request"}},
+    {"name": "another claimant got there first", "status": 409, "path": "/api/jobs/j-0007/claim", "response": {"error": "j-0007 was already claimed", "reason": "claimed_elsewhere", "status": "claimed"}, "request": {"client": "cli-w5r8t2h6"}},
+    {"name": "not finished yet", "status": 409, "path": "/api/jobs/j-0008/claim", "response": {"error": "j-0008 is queued, not done", "reason": "not_done", "status": "queued"}, "request": {"client": "cli-w5r8t2h6"}},
+    {"name": "it failed: there is nothing to wait for", "status": 409, "path": "/api/jobs/j-0009/claim", "response": {"error": "j-0009 ended failed: there is no result to claim - retry it", "reason": "ended", "status": "failed"}, "request": {"client": "cli-w5r8t2h6"}},
+    {"name": "nothing bound", "status": 409, "path": "/api/jobs/j-0007/claim", "response": {"error": "no folder is bound: choose one first", "reason": "no_workspace"}, "request": {"client": "cli-w5r8t2h6"}},
+    {"name": "gone", "status": 404, "path": "/api/jobs/j-9999/claim", "response": {"error": "no such job: j-9999", "reason": "no_such_job"}, "request": {}},
+    {"name": "the job store could not be read", "status": 503, "path": "/api/jobs/j-0007/claim", "response": {"error": "the job store could not be read: [Errno 13] Permission denied: 'D:/work/book/jobs.json'", "reason": "store_unreadable"}, "request": {}}
+  ]
+}

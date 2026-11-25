@@ -1,0 +1,9 @@
+{
+  "object": {
+    "kind": "string",
+    "detail": "string",
+    "at": "number",
+    "count": "integer",
+    "age_s": ["number", "null"]
+  }
+}

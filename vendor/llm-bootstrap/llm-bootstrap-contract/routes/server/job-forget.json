@@ -1,0 +1,21 @@
+{
+  "id": "server.jobs.forget",
+  "method": "POST",
+  "path": "/api/jobs/{id}/forget",
+  "summary": "Drop ONE finished job from the record. A queued or running job is refused - forgetting a job the worker holds would leave it running with nobody watching - and so is a finished one something still needs: a job that waits on it, a fan that has not been merged, or an ending the application has not been told about yet.",
+  "request": null,
+  "responses": {
+    "200": {"object": {"forgot": {"id": "job"}}},
+    "404": {"object": {"error": "string", "reason": {"enum": ["no_such_job"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["unfinished", "needed", "no_workspace"]}, "status": {"enum": ["queued", "running", "held", "done", "failed", "cancelled", "claimed"]}}, "optional": ["status"]},
+    "503": {"object": {"error": "string", "reason": {"enum": ["store_unreadable"]}}}
+  },
+  "examples": [
+    {"name": "forgotten", "status": 200, "path": "/api/jobs/j-0009/forget", "response": {"forgot": "j-0009"}},
+    {"name": "still running", "status": 409, "path": "/api/jobs/j-0010/forget", "response": {"error": "j-0010 is running, not finished", "reason": "unfinished", "status": "running"}},
+    {"name": "a job still waits on it", "status": 409, "path": "/api/jobs/j-0007/forget", "response": {"error": "j-0007 cannot be forgotten: j-0008 still waits on it", "reason": "needed", "status": "done"}},
+    {"name": "nothing bound", "status": 409, "path": "/api/jobs/j-0009/forget", "response": {"error": "no folder is bound: choose one first", "reason": "no_workspace"}},
+    {"name": "no such job", "status": 404, "path": "/api/jobs/j-9999/forget", "response": {"error": "no such job: j-9999", "reason": "no_such_job"}},
+    {"name": "the job store could not be read", "status": 503, "path": "/api/jobs/j-0009/forget", "response": {"error": "the job store could not be read: [Errno 13] Permission denied: 'D:/work/book/jobs.json'", "reason": "store_unreadable"}}
+  ]
+}

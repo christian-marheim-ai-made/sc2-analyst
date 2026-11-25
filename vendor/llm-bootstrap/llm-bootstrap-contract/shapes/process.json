@@ -1,0 +1,10 @@
+{
+  "object": {
+    "pid": "integer",
+    "proof": "string",
+    "model": "string",
+    "engine": "string",
+    "port": ["integer", "null"],
+    "mib": ["integer", "null"]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "coordinator.card.cancel",
+  "method": "POST",
+  "path": "/card/cancel",
+  "summary": "Give a ticket up before it is claimed, with the token alone: its asker stopped waiting - its patience ran out, its work was cancelled, or it is stopping. A wait held open on the ticket is answered at once, and an offer it had passes to the next ticket. A ticket already claimed holds the card: it is released, not cancelled.",
+  "request": {"object": {"token": "string"}},
+  "responses": {
+    "200": {"object": {"cancelled": {"ref": "ticket"}}},
+    "400": {"object": {"error": "string", "reason": {"enum": ["bad_request"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["claimed", "cancelled", "dropped", "unclaimed", "refused", "released", "reclaimed", "unknown_ticket"]}}}
+  },
+  "examples": [
+    {"name": "given up while it waited", "status": 200, "request": {"token": "Fz7Rb2Kx9Wq4Tn6Hc1Vm8Pd3Ls5Gy2Ja"}, "response": {"cancelled": {"id": "t-0043-m4n8", "holder": "replay-analyst", "actor": "srv-e5g7k2m9", "class": "scheduled", "models": [{"key": "qwen3-32b", "engine": "llamacpp", "need_mib": 18842}], "label": "replay 1182, thinking pass", "for": null, "state": "waiting", "since": 1790172011.0, "offered_until": null}}},
+    {"name": "claimed: it holds the card", "status": 409, "request": {"token": "Qm4sV8pXc2nR7tYw1eK9aHf3LzD6uJbG"}, "response": {"error": "t-0041-k3x9 holds the card: give it back with a release, not a cancel", "reason": "claimed"}},
+    {"name": "cancelled twice", "status": 409, "request": {"token": "Fz7Rb2Kx9Wq4Tn6Hc1Vm8Pd3Ls5Gy2Ja"}, "response": {"error": "t-0043-m4n8 was cancelled by its asker", "reason": "cancelled"}},
+    {"name": "already dropped", "status": 409, "request": {"token": "Fz7Rb2Kx9Wq4Tn6Hc1Vm8Pd3Ls5Gy2Ja"}, "response": {"error": "t-0043-m4n8 was dropped: nobody waited on it for 120s", "reason": "dropped"}},
+    {"name": "its offer already passed on", "status": 409, "request": {"token": "w3Hq9ZtB5mNc1xRv7KpS2dLf8GjY4aTe"}, "response": {"error": "t-0042-p7q2 was offered the card and not claimed within 30s; the offer passed on", "reason": "unclaimed"}},
+    {"name": "already refused at its claim", "status": 409, "request": {"token": "w3Hq9ZtB5mNc1xRv7KpS2dLf8GjY4aTe"}, "response": {"error": "t-0042-p7q2 was refused: the card had no room for what it asked", "reason": "refused"}},
+    {"name": "its rental was given back", "status": 409, "request": {"token": "Qm4sV8pXc2nR7tYw1eK9aHf3LzD6uJbG"}, "response": {"error": "t-0041-k3x9 was released", "reason": "released"}},
+    {"name": "its rental was taken back", "status": 409, "request": {"token": "Qm4sV8pXc2nR7tYw1eK9aHf3LzD6uJbG"}, "response": {"error": "t-0041-k3x9 was reclaimed: its holder stopped heartbeating", "reason": "reclaimed"}},
+    {"name": "a token no ticket holds", "status": 409, "request": {"token": "guessed"}, "response": {"error": "no ticket holds that token", "reason": "unknown_ticket"}},
+    {"name": "no token", "status": 400, "request": {}, "response": {"error": "$: missing required field \"token\"", "reason": "bad_request"}}
+  ]
+}

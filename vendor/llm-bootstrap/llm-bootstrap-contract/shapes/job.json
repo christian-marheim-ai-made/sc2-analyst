@@ -1,0 +1,32 @@
+{
+  "object": {
+    "id": {"id": "job"},
+    "kind": "string",
+    "name": "string",
+    "status": {"enum": ["queued", "running", "held", "done", "failed", "cancelled", "claimed"]},
+    "priority": {"enum": ["interactive", "batch"]},
+    "queue_pos": "integer",
+    "after": {"array": {"id": "job"}},
+    "group": ["string", "null"],
+    "scope": ["string", "null"],
+    "correlation_id": {"id": "correlation"},
+    "correlation_source": {"enum": ["client", "server"]},
+    "client": [{"id": "actor"}, "null"],
+    "claimed_by": [{"id": "actor"}, "null"],
+    "retry_of": [{"id": "job"}, "null"],
+    "model": "string",
+    "n": "integer",
+    "n_done": "integer",
+    "progress": {"ref": "progress"},
+    "created": "number",
+    "finished": ["number", "null"],
+    "stalled_for": ["number", "null"],
+    "error": ["string", "null"],
+    "reason": {"enum": ["card_patience", "card_busy", "judge_refused", "prompt_too_long",
+                        "no_room", "never_fits", "card_degraded"]},
+    "check": {"enum": ["marked", "held", "sent", "tuned"]},
+    "not_before": "number",
+    "if_no_room": {"enum": ["wait", "fail"]}
+  },
+  "optional": ["reason", "check", "not_before", "if_no_room"]
+}

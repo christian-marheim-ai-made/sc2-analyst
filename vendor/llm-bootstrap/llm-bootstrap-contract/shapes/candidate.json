@@ -1,0 +1,24 @@
+{
+  "object": {
+    "text": "string",
+    "model": "string",
+    "tokens": ["integer", "null"],
+    "finish_reason": ["string", "null"],
+    "sample": "integer",
+    "seed": ["integer", "null"],
+    "handle": {"id": "handle"},
+    "attempts": {"array": {"object": {"attempt": "integer", "sample": "integer", "seed": ["integer", "null"], "why": ["string", "null"]}}},
+    "verdict": {"object": {"why": ["string", "null"]}, "optional": ["why"], "open": true},
+    "load": [{"id": "actor"}, "null"],
+    "reasoning": "string",
+    "usage": {"object": {"prompt_tokens": "integer", "completion_tokens": "integer", "total_tokens": "integer"},
+              "optional": ["prompt_tokens", "completion_tokens", "total_tokens"], "open": true},
+    "timings": {"object": {"predicted_n": "integer", "predicted_per_second": "number"},
+                "optional": ["predicted_n", "predicted_per_second"], "open": true},
+    "transcript": {"ref": "transcript"},
+    "audio_s": "number"
+  },
+  "optional": ["sample", "seed", "handle", "attempts", "verdict", "load", "reasoning", "usage", "timings",
+               "transcript", "audio_s"],
+  "open": true
+}

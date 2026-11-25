@@ -1,0 +1,20 @@
+{
+  "id": "server.workspace.bind",
+  "method": "POST",
+  "path": "/api/workspace",
+  "summary": "Point the server at a folder. Selecting is not an operation: nothing is moved, created or migrated. Refused while a job is unfinished, naming the job (`busy`, with `job`), because a result must land in the folder it was asked for in. Refused when another server has the folder bound (`folder_in_use`, with `holder` - who has it, or null when that cannot be read): two servers on one folder would each settle the other's work as a stopped server's. The folder is held for as long as it is bound, and the operating system lets it go when the server dies, however it dies. On any refusal the server stays bound where it was.",
+  "request": {"object": {"path": "string"}},
+  "responses": {
+    "200": {"object": {"loaded": {"enum": [true]}, "workspace": "string"}},
+    "400": {"object": {"error": "string", "reason": {"enum": ["no_path", "unusable_folder", "bad_request"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["busy", "folder_in_use"]}, "job": {"id": "job"}, "holder": [{"object": {"pid": "integer", "url": ["string", "null"], "since": "number", "actor": [{"id": "actor"}, "null"]}}, "null"]}, "optional": ["job", "holder"]}
+  },
+  "examples": [
+    {"name": "bound", "status": 200, "request": {"path": "D:/work/book"}, "response": {"loaded": true, "workspace": "D:/work/book"}},
+    {"name": "blank path", "status": 400, "request": {"path": ""}, "response": {"error": "no folder given", "reason": "no_path"}},
+    {"name": "folder cannot be used", "status": 400, "request": {"path": "Z:/nowhere"}, "response": {"error": "cannot use that folder: it does not exist", "reason": "unusable_folder"}},
+    {"name": "a path that is not a string", "status": 400, "request": {"path": 7}, "response": {"error": "$.path: expected string, got number", "reason": "bad_request"}},
+    {"name": "a job is still running", "status": 409, "request": {"path": "D:/work/other"}, "response": {"error": "a job is unfinished: bench: a haiku about rain", "reason": "busy", "job": "j-0007"}},
+    {"name": "another server has it", "status": 409, "request": {"path": "D:/work/shared"}, "response": {"error": "D:/work/shared is bound by another server (pid 5120, http://127.0.0.1:7073)", "reason": "folder_in_use", "holder": {"pid": 5120, "url": "http://127.0.0.1:7073", "since": 1790171500.0, "actor": "srv-d4h6j9s3"}}}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "object": {
+    "runs": "integer",
+    "normal": ["number", "null"],
+    "last": ["number", "null"],
+    "last_at": ["number", "null"],
+    "slow": "boolean"
+  }
+}

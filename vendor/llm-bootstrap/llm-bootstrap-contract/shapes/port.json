@@ -1,0 +1,9 @@
+{
+  "object": {
+    "port": "integer",
+    "actor": {"id": "actor"},
+    "purpose": "string",
+    "granted_at": "number",
+    "expires_at": "number"
+  }
+}

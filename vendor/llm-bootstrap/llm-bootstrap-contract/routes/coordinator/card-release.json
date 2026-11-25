@@ -1,0 +1,25 @@
+{
+  "id": "coordinator.card.release",
+  "method": "POST",
+  "path": "/card/release",
+  "summary": "Give the card back, with the token alone. A holder releases on every way out - done, cancelled, refused, crashed and recovered. THE RELEASE IS CHECKED: it is answered once every process the rental still names is gone and - where the coordinator can read the card - the card's memory is back to what it read when the rental was granted; where it cannot read the card, the processes gone suffice. A process still there after the coordinator's settle time (`limits.settle_s` on `/state`, 10 s unless it was started with another) is ended on its proof, and the record names each. Only then is the card offered to the next ticket in line, and while the check runs the rental is `releasing` on `/state`. The answer is the rental as it was released: `state` is `released`, and `processes` what it named. Releasing a rental that is already over is refused with the reason, so a holder learns whether it gave the card back or had it taken. A ticket that was never claimed is cancelled, not released.",
+  "request": {"object": {"token": "string"}},
+  "responses": {
+    "200": {"object": {"released": {"ref": "rental"}}},
+    "400": {"object": {"error": "string", "reason": {"enum": ["bad_request"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["not_held", "cancelled", "dropped", "unclaimed", "refused", "released", "reclaimed", "unknown_ticket"]}}}
+  },
+  "examples": [
+    {"name": "given back", "status": 200, "request": {"token": "Qm4sV8pXc2nR7tYw1eK9aHf3LzD6uJbG"}, "response": {"released": {"id": "t-0041-k3x9", "holder": "writer-app", "actor": "srv-k3x9m2p7", "class": "responsive", "models": [{"key": "demo-7b", "engine": "llamacpp", "need_mib": null}], "label": null, "for": "c-20260923-140012-a3k9m2p7", "granted_at": 1790172000.2, "expires_at": 1790172020.2, "state": "released", "processes": [], "degraded": null}}},
+    {"name": "given back while it still named its process, which was gone before the answer", "status": 200, "request": {"token": "Qm4sV8pXc2nR7tYw1eK9aHf3LzD6uJbG"}, "response": {"released": {"id": "t-0041-k3x9", "holder": "writer-app", "actor": "srv-k3x9m2p7", "class": "responsive", "models": [{"key": "demo-7b", "engine": "llamacpp", "need_mib": null}], "label": null, "for": "c-20260923-140012-a3k9m2p7", "granted_at": 1790172000.2, "expires_at": 1790172020.2, "state": "released", "processes": [{"pid": 18344, "proof": "load-k3x9m2p7", "model": "demo-7b", "engine": "llamacpp", "port": 31001, "mib": null, "since": 1790172003.0}], "degraded": null}}},
+    {"name": "a ticket that was never claimed", "status": 409, "request": {"token": "w3Hq9ZtB5mNc1xRv7KpS2dLf8GjY4aTe"}, "response": {"error": "t-0042-p7q2 is offered: it holds no rental", "reason": "not_held"}},
+    {"name": "cancelled before it was held", "status": 409, "request": {"token": "w3Hq9ZtB5mNc1xRv7KpS2dLf8GjY4aTe"}, "response": {"error": "t-0042-p7q2 was cancelled by its asker", "reason": "cancelled"}},
+    {"name": "dropped before it was held", "status": 409, "request": {"token": "Fz7Rb2Kx9Wq4Tn6Hc1Vm8Pd3Ls5Gy2Ja"}, "response": {"error": "t-0043-m4n8 was dropped: nobody waited on it for 120s", "reason": "dropped"}},
+    {"name": "offered and never claimed", "status": 409, "request": {"token": "w3Hq9ZtB5mNc1xRv7KpS2dLf8GjY4aTe"}, "response": {"error": "t-0042-p7q2 was offered the card and not claimed within 30s; the offer passed on", "reason": "unclaimed"}},
+    {"name": "refused at its claim, never held", "status": 409, "request": {"token": "w3Hq9ZtB5mNc1xRv7KpS2dLf8GjY4aTe"}, "response": {"error": "t-0042-p7q2 was refused: the card had no room for what it asked", "reason": "refused"}},
+    {"name": "given back twice", "status": 409, "request": {"token": "Qm4sV8pXc2nR7tYw1eK9aHf3LzD6uJbG"}, "response": {"error": "t-0041-k3x9 was released", "reason": "released"}},
+    {"name": "it had already been taken back", "status": 409, "request": {"token": "Qm4sV8pXc2nR7tYw1eK9aHf3LzD6uJbG"}, "response": {"error": "t-0041-k3x9 was reclaimed: its holder stopped heartbeating", "reason": "reclaimed"}},
+    {"name": "a token no ticket holds", "status": 409, "request": {"token": "guessed"}, "response": {"error": "no ticket holds that token", "reason": "unknown_ticket"}},
+    {"name": "a token that is not a string", "status": 400, "request": {"token": 41}, "response": {"error": "$.token: expected string, got number", "reason": "bad_request"}}
+  ]
+}

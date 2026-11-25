@@ -1,0 +1,18 @@
+{
+  "object": {
+    "job": {"ref": "job"},
+    "request": "any",
+    "model": "string",
+    "engine": [{"enum": ["llamacpp", "whisper"]}, "null"],
+    "messages": [{"array": {"object": {"role": {"enum": ["system", "user", "assistant"]}, "content": "string"}}}, "null"],
+    "audio": [{"object": {"path": "string", "seconds": ["number", "null"]}}, "null"],
+    "fields": [{"object": {}, "open": true}, "null"],
+    "gen": {"object": {}, "open": true},
+    "params": {"array": {"object": {"name": "string", "value": "any", "from": {"enum": ["application", "model", "bootstrap"]}}}},
+    "count": [{"object": {"prompt_tokens": "integer", "room": "integer", "context": "integer"}}, "null"],
+    "fits": ["boolean", "null"],
+    "expect": [{"object": {"measure": {"enum": ["answer_s", "real_time_factor"]}, "median_s": "number", "p90_s": "number", "samples": "integer"}}, "null"],
+    "said": {"array": "string"},
+    "held_at": "number"
+  }
+}

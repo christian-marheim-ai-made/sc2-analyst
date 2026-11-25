@@ -1,0 +1,260 @@
+{
+ "provenance": "MEASURED by tools/review_s3.py over 768 game records, 2026-10-26: the most common gap (whole seconds, in-game clock) between two consecutive same-type births from one producer, or from a larva's egg to its unit's birth; 'support' = gaps at that value, 'gaps' = all gaps in 3..120 s",
+ "build_times": {
+  "Adept": {
+   "seconds": 30,
+   "support": 20,
+   "gaps": 112
+  },
+  "Banshee": {
+   "seconds": 43,
+   "support": 87,
+   "gaps": 177
+  },
+  "Battlecruiser": {
+   "seconds": 64,
+   "support": 363,
+   "gaps": 1222
+  },
+  "Carrier": {
+   "seconds": 64,
+   "support": 479,
+   "gaps": 2340
+  },
+  "Colossus": {
+   "seconds": 54,
+   "support": 84,
+   "gaps": 289
+  },
+  "Corruptor": {
+   "seconds": 29,
+   "support": 4769,
+   "gaps": 4769
+  },
+  "Cyclone": {
+   "seconds": 32,
+   "support": 573,
+   "gaps": 1307
+  },
+  "DarkTemplar": {
+   "seconds": 39,
+   "support": 22,
+   "gaps": 58
+  },
+  "Disruptor": {
+   "seconds": 37,
+   "support": 5,
+   "gaps": 15
+  },
+  "Drone": {
+   "seconds": 12,
+   "support": 54418,
+   "gaps": 54418
+  },
+  "ForceField": {
+   "seconds": 14,
+   "support": 4,
+   "gaps": 63
+  },
+  "Ghost": {
+   "seconds": 28,
+   "support": 60,
+   "gaps": 121
+  },
+  "GhostAlternate": {
+   "seconds": 28,
+   "support": 14,
+   "gaps": 29
+  },
+  "Hellion": {
+   "seconds": 21,
+   "support": 525,
+   "gaps": 1640
+  },
+  "HellionTank": {
+   "seconds": 21,
+   "support": 96,
+   "gaps": 179
+  },
+  "HighTemplar": {
+   "seconds": 20,
+   "support": 5,
+   "gaps": 18
+  },
+  "Hydralisk": {
+   "seconds": 24,
+   "support": 22780,
+   "gaps": 22780
+  },
+  "Immortal": {
+   "seconds": 39,
+   "support": 226,
+   "gaps": 659
+  },
+  "Infestor": {
+   "seconds": 36,
+   "support": 358,
+   "gaps": 358
+  },
+  "InvisibleTargetDummy": {
+   "seconds": 4,
+   "support": 170,
+   "gaps": 1993
+  },
+  "Liberator": {
+   "seconds": 43,
+   "support": 121,
+   "gaps": 1194
+  },
+  "Marauder": {
+   "seconds": 21,
+   "support": 4996,
+   "gaps": 8172
+  },
+  "Marine": {
+   "seconds": 18,
+   "support": 18680,
+   "gaps": 56150
+  },
+  "Medivac": {
+   "seconds": 30,
+   "support": 399,
+   "gaps": 1717
+  },
+  "Mutalisk": {
+   "seconds": 24,
+   "support": 5613,
+   "gaps": 5613
+  },
+  "Nuke": {
+   "seconds": 54,
+   "support": 3,
+   "gaps": 34
+  },
+  "Observer": {
+   "seconds": 18,
+   "support": 548,
+   "gaps": 1091
+  },
+  "Oracle": {
+   "seconds": 37,
+   "support": 36,
+   "gaps": 230
+  },
+  "Overlord": {
+   "seconds": 18,
+   "support": 13718,
+   "gaps": 13718
+  },
+  "ParasiticBombRelayDummy": {
+   "seconds": 92,
+   "support": 3,
+   "gaps": 39
+  },
+  "Phoenix": {
+   "seconds": 25,
+   "support": 706,
+   "gaps": 2103
+  },
+  "Probe": {
+   "seconds": 12,
+   "support": 32849,
+   "gaps": 76342
+  },
+  "Queen": {
+   "seconds": 36,
+   "support": 141,
+   "gaps": 505
+  },
+  "Raven": {
+   "seconds": 34,
+   "support": 19,
+   "gaps": 64
+  },
+  "Reaper": {
+   "seconds": 32,
+   "support": 318,
+   "gaps": 956
+  },
+  "Roach": {
+   "seconds": 19,
+   "support": 6864,
+   "gaps": 6864
+  },
+  "SCV": {
+   "seconds": 12,
+   "support": 35604,
+   "gaps": 63796
+  },
+  "Sentry": {
+   "seconds": 23,
+   "support": 10,
+   "gaps": 35
+  },
+  "SiegeTank": {
+   "seconds": 32,
+   "support": 2009,
+   "gaps": 5755
+  },
+  "Stalker": {
+   "seconds": 27,
+   "support": 434,
+   "gaps": 1812
+  },
+  "SwarmHostMP": {
+   "seconds": 29,
+   "support": 694,
+   "gaps": 694
+  },
+  "Tempest": {
+   "seconds": 43,
+   "support": 591,
+   "gaps": 2134
+  },
+  "Thor": {
+   "seconds": 43,
+   "support": 720,
+   "gaps": 1856
+  },
+  "Ultralisk": {
+   "seconds": 39,
+   "support": 1435,
+   "gaps": 1435
+  },
+  "VikingFighter": {
+   "seconds": 30,
+   "support": 2090,
+   "gaps": 7457
+  },
+  "Viper": {
+   "seconds": 29,
+   "support": 232,
+   "gaps": 232
+  },
+  "VoidRay": {
+   "seconds": 43,
+   "support": 2284,
+   "gaps": 10158
+  },
+  "WarpPrism": {
+   "seconds": 36,
+   "support": 40,
+   "gaps": 77
+  },
+  "WidowMine": {
+   "seconds": 21,
+   "support": 919,
+   "gaps": 2789
+  },
+  "Zealot": {
+   "seconds": 27,
+   "support": 252,
+   "gaps": 634
+  },
+  "Zergling": {
+   "seconds": 17,
+   "support": 65208,
+   "gaps": 65208
+  }
+ }
+}

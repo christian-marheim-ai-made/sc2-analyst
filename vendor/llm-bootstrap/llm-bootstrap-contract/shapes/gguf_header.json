@@ -1,0 +1,8 @@
+{
+  "object": {
+    "architecture": "string",
+    "trained_context": ["integer", "null"],
+    "chat_template": "boolean",
+    "bits_per_weight": ["number", "null"]
+  }
+}

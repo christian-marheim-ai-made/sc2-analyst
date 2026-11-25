@@ -1,0 +1,14 @@
+{
+  "id": "server.workspace.get",
+  "method": "GET",
+  "path": "/api/workspace",
+  "summary": "The folder the server is bound to. The one fact every disable in a client derives from, so this route never refuses: a refusal here would take away the thing that explains every other refusal.",
+  "request": null,
+  "responses": {
+    "200": {"object": {"loaded": "boolean", "workspace": ["string", "null"]}}
+  },
+  "examples": [
+    {"name": "bound", "status": 200, "response": {"loaded": true, "workspace": "D:/work/book"}},
+    {"name": "nothing bound", "status": 200, "response": {"loaded": false, "workspace": null}}
+  ]
+}

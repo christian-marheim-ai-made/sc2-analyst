@@ -1,0 +1,21 @@
+{
+  "id": "server.config.keep",
+  "method": "POST",
+  "path": "/api/workspace/config",
+  "summary": "Keep a configuration in the bound folder, and use it: written whole under its name - the sha256 of its canonical JSON - in `client/configs/`, and named in `current.json` as the one in use. The same configuration kept twice is one file (`new` false). At most 64 KiB as canonical JSON. Several named configurations are a seam, not built: more files, and a name each.",
+  "request": {"object": {"config": {"object": {}, "open": true}}},
+  "responses": {
+    "200": {"object": {"sha256": "string", "new": "boolean"}},
+    "400": {"object": {"error": "string", "reason": {"enum": ["bad_request", "too_large"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["no_workspace"]}}},
+    "503": {"object": {"error": "string", "reason": {"enum": ["config_unwritable"]}}}
+  },
+  "examples": [
+    {"name": "a layout moved", "status": 200, "request": {"config": {"v": 2, "layout": {"bar": {"slots": {"start": ["workspace", "log"], "middle": ["queue"], "end": ["customize"]}, "shed": ["queue", "workspace", "log"]}}}}, "response": {"sha256": "9d75b096f49311dca0a57d5da4af7532d81588f91ff66335f007f780232d4308", "new": true}},
+    {"name": "the same, kept again", "status": 200, "request": {"config": {"v": 2, "layout": {"bar": {"slots": {"start": ["workspace"], "middle": ["queue"], "end": ["log", "customize"]}, "shed": ["workspace", "queue", "log"]}}}}, "response": {"sha256": "6281416fd3fac2d58dcb608da65dae1d1e7c65929cbbaa44b2fd349a90777a73", "new": false}},
+    {"name": "a config that is not an object", "status": 400, "request": {"config": "left"}, "response": {"error": "$.config: expected object, got string", "reason": "bad_request"}},
+    {"name": "too large", "status": 400, "request": {"config": {"v": 2, "layout": "(70112 bytes of layout, not shown)"}}, "response": {"error": "a configuration is at most 65536 bytes as JSON; this one is 70112", "reason": "too_large"}},
+    {"name": "nothing bound", "status": 409, "request": {"config": {"v": 2, "layout": {"bar": {"slots": {"start": ["workspace"], "middle": ["queue"], "end": ["log", "customize"]}, "shed": ["workspace", "queue", "log"]}}}}, "response": {"error": "no folder is bound: choose one first", "reason": "no_workspace"}},
+    {"name": "the folder cannot be written", "status": 503, "request": {"config": {"v": 2, "layout": {"bar": {"slots": {"start": ["workspace"], "middle": ["queue"], "end": ["log", "customize"]}, "shed": ["workspace", "queue", "log"]}}}}, "response": {"error": "the configuration could not be kept: [Errno 13] Permission denied", "reason": "config_unwritable"}}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "object": {
+    "messages": {"array": {"object": {
+      "role": {"enum": ["system", "user", "assistant"]},
+      "content": "string"
+    }}}
+  }
+}

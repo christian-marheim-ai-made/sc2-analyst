@@ -1,0 +1,21 @@
+{
+  "id": "server.jobs.cancel",
+  "method": "POST",
+  "path": "/api/jobs/{id}/cancel",
+  "summary": "Stop a job that has not finished. `was` says whether it had started, because cancelling a running job also ends a generation and gives the card back. A held job (PLAN-4 D16) ends at once, `was: held`: nothing is on the card for it. A running job whose generation has not let go yet is answered still `running`; it ends `cancelled` when it does, and a cancel asked for before the server stopped still stands after it restarts.",
+  "request": null,
+  "responses": {
+    "200": {"object": {"job": {"ref": "job"}, "was": {"enum": ["queued", "running", "held"]}}},
+    "404": {"object": {"error": "string", "reason": {"enum": ["no_such_job"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["finished", "no_workspace"]}, "status": {"enum": ["done", "failed", "cancelled", "claimed"]}}, "optional": ["status"]},
+    "503": {"object": {"error": "string", "reason": {"enum": ["store_unreadable"]}}}
+  },
+  "examples": [
+    {"name": "stopped while running", "status": 200, "path": "/api/jobs/j-0010/cancel", "response": {"job": {"id": "j-0010", "kind": "generate", "name": "reading 1 of 3", "status": "cancelled", "priority": "batch", "queue_pos": 0, "after": [], "group": "fan-0003", "scope": "book-1", "correlation_id": "c-20260923-140101-c3w5r8t2", "correlation_source": "client", "client": "cli-w5r8t2h6", "claimed_by": null, "retry_of": null, "model": "demo-7b", "n": 1, "n_done": 0, "progress": {"variant": 1, "of": 1, "budget": 400, "spent": 0, "handle": "srv-k3x9m2p7:j-0010#01", "at": 1790172098.5, "reported": true, "stage": "writing", "tokens": 120, "tok_s": 38.5}, "created": 1790172061.0, "finished": 1790172090.0, "stalled_for": null, "error": null}, "was": "running"}},
+    {"name": "already finished", "status": 409, "path": "/api/jobs/j-0007/cancel", "response": {"error": "j-0007 is done: there is nothing to stop", "reason": "finished", "status": "done"}},
+    {"name": "nothing bound", "status": 409, "path": "/api/jobs/j-0010/cancel", "response": {"error": "no folder is bound: choose one first", "reason": "no_workspace"}},
+    {"name": "no such job", "status": 404, "path": "/api/jobs/j-9999/cancel", "response": {"error": "no such job: j-9999", "reason": "no_such_job"}},
+    {"name": "the job store could not be read", "status": 503, "path": "/api/jobs/j-0010/cancel", "response": {"error": "the job store could not be read: [Errno 13] Permission denied: 'D:/work/book/jobs.json'", "reason": "store_unreadable"}},
+    {"name": "a held request, cancelled: it ends at once", "status": 200, "path": "/api/jobs/j-0012/cancel", "response": {"job": {"id": "j-0012", "kind": "write", "name": "part 2", "status": "cancelled", "priority": "batch", "queue_pos": 0, "after": ["j-0011"], "group": null, "scope": "book-1", "correlation_id": "c-20260923-140300-h4n6p8q2", "correlation_source": "client", "client": "cli-w5r8t2h6", "claimed_by": null, "retry_of": null, "model": "story-12b", "n": 1, "n_done": 0, "progress": {"stage": "held", "count": {"prompt_tokens": 1834, "room": 900, "context": 8192}}, "created": 1790172100.0, "finished": 1790172190.0, "stalled_for": null, "error": null, "check": "held"}, "was": "held"}}
+  ]
+}

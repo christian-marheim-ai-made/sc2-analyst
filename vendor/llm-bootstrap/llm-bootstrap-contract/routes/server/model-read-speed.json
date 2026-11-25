@@ -1,0 +1,24 @@
+{
+  "id": "server.models.read_speed",
+  "method": "POST",
+  "path": "/api/models/{key}/read-speed",
+  "summary": "How fast the model's file comes off its disk: one stretch of at most 64 MB, a third of the way in, read for at most 3 s. A second read of a stretch is the operating system's cache, not the disk - so the read goes past the cache where the platform allows it (`past_cache` true), says it cannot tell where it cannot (null), and says it is the cache when this server read that stretch before (false). `said` is the sentence. Refused while a model loads - the measure would measure the load as well - and while another measure runs.",
+  "request": null,
+  "responses": {
+    "200": {"object": {"key": "string", "path": "string", "disk": ["string", "null"], "measure": {"ref": "read_speed"}}},
+    "404": {"object": {"error": "string", "reason": {"enum": ["no_model"]}}},
+    "409": {"object": {"error": "string", "reason": {"enum": ["no_file", "busy", "unreadable", "no_runner"]}}}
+  },
+  "examples": [
+    {"name": "past the cache", "status": 200, "path": "/api/models/story-12b/read-speed", "response": {"key": "story-12b", "path": "D:/models/story-12b.Q5_K_M.gguf", "disk": "D:", "measure": {"bytes": 67108864, "seconds": 0.412, "mb_s": 162.9, "offset": 2863661056, "past_cache": true, "at": 1790172300.0, "said": "67 MB in 0.41 s: 163 MB/s from D:, past the operating system's cache"}}},
+    {"name": "where the platform cannot go past the cache", "status": 200, "path": "/api/models/story-12b/read-speed", "response": {"key": "story-12b", "path": "/srv/models/story-12b.Q5_K_M.gguf", "disk": "/srv", "measure": {"bytes": 67108864, "seconds": 0.057, "mb_s": 1177.3, "offset": 2863661056, "past_cache": null, "at": 1790172300.0, "said": "67 MB in 0.06 s: 1177 MB/s from /srv - the operating system may have served it from memory, so this cannot tell the disk from its cache"}}},
+    {"name": "a stretch this server read before", "status": 200, "path": "/api/models/story-12b/read-speed", "response": {"key": "story-12b", "path": "/srv/models/story-12b.Q5_K_M.gguf", "disk": "/srv", "measure": {"bytes": 67108864, "seconds": 0.021, "mb_s": 3195.7, "offset": 2863661056, "past_cache": false, "at": 1790172300.0, "said": "67 MB in 0.02 s: 3196 MB/s - this server read that stretch before, so this is most likely the operating system's cache, not the disk"}}},
+    {"name": "no such model", "status": 404, "path": "/api/models/story-13b/read-speed", "response": {"error": "no model 'story-13b' here; the runner knows draft-7b, judge-4b, story-12b", "reason": "no_model"}},
+    {"name": "a stand-in has no file", "status": 409, "path": "/api/models/demo/read-speed", "response": {"error": "demo is a stand-in: it has no file to read", "reason": "no_file"}},
+    {"name": "the file is not there", "status": 409, "path": "/api/models/judge-4b/read-speed", "response": {"error": "judge-4b's file is not there: D:/models/judge-4b.Q4_K_M.gguf", "reason": "no_file"}},
+    {"name": "a model is loading", "status": 409, "path": "/api/models/story-12b/read-speed", "response": {"error": "a model is loading: a measure now would measure the load as well", "reason": "busy"}},
+    {"name": "another measure is running", "status": 409, "path": "/api/models/story-12b/read-speed", "response": {"error": "a measure is already running", "reason": "busy"}},
+    {"name": "the file cannot be read", "status": 409, "path": "/api/models/story-12b/read-speed", "response": {"error": "cannot read D:/models/story-12b.Q5_K_M.gguf: [WinError 33] The process cannot access the file because another process has locked a portion of the file", "reason": "unreadable"}},
+    {"name": "no runner behind the server", "status": 409, "path": "/api/models/story-12b/read-speed", "response": {"error": "no model runner behind this server: it has no models to measure", "reason": "no_runner"}}
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "object": {
+    "task": "string",
+    "language": "string",
+    "duration": "number",
+    "text": "string",
+    "segments": {"array": {"object": {
+      "id": "integer",
+      "text": "string",
+      "start": "number",
+      "end": "number",
+      "tokens": {"array": "integer"},
+      "words": {"array": {"object": {
+        "word": "string",
+        "start": "number",
+        "end": "number",
+        "t_dtw": "number",
+        "probability": "number"
+      }, "optional": ["start", "end", "t_dtw"], "open": true}},
+      "temperature": "number",
+      "avg_logprob": ["number", "null"],
+      "no_speech_prob": "number"
+    }, "optional": ["start", "end", "tokens", "words"], "open": true}},
+    "detected_language": "string",
+    "detected_language_probability": "number",
+    "language_probabilities": {"object": {}, "open": true}
+  },
+  "optional": ["detected_language", "detected_language_probability", "language_probabilities"],
+  "open": true
+}

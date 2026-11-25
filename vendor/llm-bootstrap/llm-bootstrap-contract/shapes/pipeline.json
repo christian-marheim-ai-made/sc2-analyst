@@ -1,0 +1,14 @@
+{
+  "object": {
+    "id": [{"id": "pipeline"}, "null"],
+    "state": {"enum": ["closed", "waiting", "holding", "degraded", "lost"]},
+    "why": ["string", "null"],
+    "since": ["number", "null"],
+    "label": ["string", "null"],
+    "models": {"array": "string"},
+    "up": {"array": "string"},
+    "class": [{"enum": ["responsive", "scheduled"]}, "null"],
+    "keep_s": ["number", "null"],
+    "opened_by": [{"enum": ["application", "start", "queue"]}, "null"]
+  }
+}

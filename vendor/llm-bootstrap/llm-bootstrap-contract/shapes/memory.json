@@ -1,0 +1,8 @@
+{
+  "object": {
+    "need_mib": "integer",
+    "free_mib": ["integer", "null"],
+    "margin_mib": "integer",
+    "total_mib": ["integer", "null"]
+  }
+}

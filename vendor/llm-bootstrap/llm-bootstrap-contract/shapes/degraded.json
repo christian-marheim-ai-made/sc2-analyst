@@ -1,0 +1,14 @@
+{
+  "object": {
+    "reason": {"enum": ["under_floor", "memory_error", "slow_answer"]},
+    "why": "string",
+    "since": "number",
+    "free_mib": ["integer", "null"],
+    "floor_mib": "integer",
+    "total_mib": ["integer", "null"],
+    "error": ["string", "null"],
+    "need_mib": ["integer", "null"],
+    "outside_mib": ["integer", "null"]
+  },
+  "optional": ["need_mib", "outside_mib"]
+}

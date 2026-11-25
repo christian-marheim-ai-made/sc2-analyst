@@ -1,0 +1,32 @@
+# The analyser's models on llm-bootstrap (vendor/llm-bootstrap). Every key is the bootstrap's own:
+# vendor/llm-bootstrap/llm-bootstrap-server/README.md, "The runner's settings".
+#
+# Paths are relative to this repository: unzip llama.cpp into llama/ and put the two model files into
+# models/ (README, "Add llama-server and the models"). To use other places, copy this file to
+# config/runner.local.toml (not tracked) and set the paths there - that file wins when it exists.
+#
+# One model on the card at a time: the thinker and the wordsmith are loaded one after the other inside
+# one session, never side by side - together they are ~33 GiB.
+
+[runner]
+backend = "llamacpp"
+llama_server = "llama/llama-server.exe"
+models_dir = "models"
+max_loads = 1
+idle_unload_s = 120.0
+
+[models.thinker]
+file = "Qwen3.6-27B-Q4_K_M.gguf"
+label = "Qwen3.6 27B Q4_K_M - deep thinking"
+ctx = 16384
+cache_type_k = "q8_0"
+cache_type_v = "q8_0"
+temperature = 0.6
+top_p = 0.95
+
+[models.wordsmith]
+file = "TheDrummer_Cydonia-24B-v4.1-Q5_K_M.gguf"
+label = "Cydonia 24B v4.1 Q5_K_M - wordsmithing only"
+ctx = 8192
+disable_thinking = true
+temperature = 0.7
